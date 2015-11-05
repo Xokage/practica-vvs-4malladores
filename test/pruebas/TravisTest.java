@@ -8,7 +8,8 @@ public class TravisTest {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		//Pasa automáticamente para probar o travis.
+		assertTrue(true);
 	}
 
 }
