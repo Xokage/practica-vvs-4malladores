@@ -92,8 +92,9 @@ public class ServidorSimpleImp implements Servidor {
 			if(tmpUser.getLeft().equals(token))
 				user = tmpUser;
 		}
-		this.tokenValido.remove(user); //Quitamos o usuario da lista de tokens validos
-									   //mentres está pedindo contido.
+		if (user!=null)	this.tokenValido.remove(user); 
+												//Quitamos o usuario da lista de tokens validos
+												//mentres está pedindo contido.
 		int contadorDeAnuncios = 3;
 		for(Contenido elemento : this.contenidoList){
 			if(user.getRight()<=0){
