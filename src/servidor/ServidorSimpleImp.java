@@ -2,6 +2,7 @@ package servidor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import util.Pair;
 import contenido.Contenido;
@@ -12,6 +13,15 @@ public class ServidorSimpleImp implements Servidor {
 	private List<Contenido> contenidoList;
 	private String tokenContenido;
 	private List<Pair<String, Integer>> tokenValido;
+	
+	private Pair getToken(int chars) {
+	    String CharSet = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!@#$";
+	    String Token = "";
+	    for (int a = 1; a <= chars; a++) {
+	        Token += CharSet.charAt(new Random().nextInt(CharSet.length()));
+	    }
+	    return new Pair(Token,10);
+	}
 
 	public ServidorSimpleImp(String nombre, List<Contenido> contenidoList,
 			String tokenContenido, String tokenValido) {
