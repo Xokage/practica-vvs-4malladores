@@ -3,49 +3,68 @@ package contenido;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Anuncio implements Contenido {
+public class Emisora implements Contenido {
+	
 	private String titulo;
-	private int duracion;
+	private Integer duracion;
 	private List<Contenido> listaReproduccion;
 	
-	public Anuncio(){
-		titulo = "PUBLICIDAD";
-		duracion = 5;
-		listaReproduccion = new ArrayList<Contenido>();
-		listaReproduccion.add(this);
+	public Emisora(String titulo, Integer duracion) {
+		this.titulo = titulo;
+		this.duracion = duracion;
+		this.listaReproduccion = new ArrayList<Contenido>();
 	}
 	
 	@Override
 	public String obtenerTitulo() {
+		
 		return titulo;
+
 	}
 
 	@Override
 	public Integer obtenerDuracion() {
+		
 		return duracion;
+		
 	}
 
 	@Override
 	public List<Contenido> obtenerListaReproduccion() {
+		
 		return listaReproduccion;
+		
 	}
 
 	@Override
 	public List<Contenido> buscar(String subcadena) {
-		if (titulo.equalsIgnoreCase(subcadena))
-			return listaReproduccion;
-		else return new ArrayList<Contenido>();
+		
+		List<Contenido> lista = new ArrayList<Contenido>();
+		
+		for (Contenido c : listaReproduccion) {
+			
+			if (c.getTitulo().contains(subcadena)){
+				
+				lista.add(c);
+			}
+				
+		}
+		
+		return lista;
 	}
 
 	@Override
 	public void agregar(Contenido contenido, Contenido predecesor) {
-		// TODO Auto-generated method stub
+		
+		Integer indice = listaReproduccion.indexOf(predecesor);
+		listaReproduccion.add(indice + 1, contenido);
 		
 	}
 
 	@Override
 	public void eliminar(Contenido contenido) {
-		// TODO Auto-generated method stub
+		
+		listaReproduccion.remove(contenido);
 		
 	}
 	
@@ -57,4 +76,6 @@ public class Anuncio implements Contenido {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+
+
 }
