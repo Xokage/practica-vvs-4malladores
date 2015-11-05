@@ -12,7 +12,7 @@ public interface Contenido {
 	public Integer obtenerDuracion();
 	public List<Contenido> obtenerListaReproduccion();
 	
-	//Buscar realiza comparaciones usando el título
+	//Buscar realiza comparaciones usando el titulo
 	public List<Contenido> buscar(String subcadena);
 	
 	//En canciones y anuncios agregar no tiene efecto
