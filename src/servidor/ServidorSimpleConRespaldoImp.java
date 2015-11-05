@@ -17,12 +17,14 @@ public class ServidorSimpleConRespaldoImp extends ServidorSimpleImp {
 	}
 
 	public ServidorSimpleConRespaldoImp(String nombre, String tokenContenido,
-			String tokenValido) {
+			String tokenValido, ServidorRespaldoImp servidorRespaldo) {
 		super(nombre,tokenContenido,tokenValido);
+		this.servidorRespaldo = servidorRespaldo;
 	}
 
-	public ServidorSimpleConRespaldoImp(String nombre) {
+	public ServidorSimpleConRespaldoImp(String nombre, ServidorRespaldoImp servidorRespaldo) {
 		super(nombre);
+		this.servidorRespaldo = servidorRespaldo;
 	}
 	
 	@Override
