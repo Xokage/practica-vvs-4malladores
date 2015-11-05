@@ -86,20 +86,24 @@ public class ServidorSimpleImp implements Servidor {
 		for(Contenido elemento : this.contenidoList){
 			if(user.getRight()<=0){
 				baja(user.getLeft()); //Se o token non 
-			}						  //ten mais usos eliminamolo.
-														 
-			if(contadorDeAnuncios>=3){
-				contadorDeAnuncios = 0;
-				//TODO meter un anuncio.
-			} else contadorDeAnuncios++;
-
+			 						  //ten mais usos eliminamolo.
+				user = null;
+			}
+			
+			if(user == null){		//Se non hai token valido
+				if(contadorDeAnuncios>=3){
+					contadorDeAnuncios = 0;
+					//TODO meter un anuncio.
+				} else contadorDeAnuncios++;
+			}
+			
 			if(elemento.obtenerTitulo().contains(subcadena)){
 				resultado.add(elemento);
 				user = new Pair<String, Integer>(user.getLeft(),user.getRight() - 1);
 			}
 		}
 		
-		return null;
+		return resultado;
 	}
 
 }
