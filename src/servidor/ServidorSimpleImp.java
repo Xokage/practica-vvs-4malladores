@@ -54,8 +54,10 @@ public class ServidorSimpleImp implements Servidor {
 
 	@Override
 	public String alta() {
-		// TODO Auto-generated method stub
-		return null;
+		Pair par = getToken(10);
+		tokenValido.add(par);
+		return par.getLeft().toString();
+		
 	}
 
 	@Override
