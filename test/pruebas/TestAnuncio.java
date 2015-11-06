@@ -26,17 +26,17 @@ public class TestAnuncio {
 	
 	@Test
 	public void obtenerListaReproduccionTest() {
-		List<Contenido> listaReproduccionIdeal = new ArrayList();
+		List<Contenido> listaReproduccionIdeal = new ArrayList<Contenido>();
 		listaReproduccionIdeal.add(anuncio); 
 		assertTrue(anuncio.obtenerListaReproduccion().equals(listaReproduccionIdeal));
 	}
 	
 	@Test
 	public void buscarTest() {
-		List<Contenido> listaReproduccionIdeal = new ArrayList();
+		List<Contenido> listaReproduccionIdeal = new ArrayList<Contenido>();
 		listaReproduccionIdeal.add(anuncio);
 		assertTrue(anuncio.buscar("PUBLICIDAD").equals(listaReproduccionIdeal));
-		listaReproduccionIdeal = new ArrayList();
+		listaReproduccionIdeal = new ArrayList<Contenido>();
 		assertTrue(anuncio.buscar("OTRA COSA").equals(listaReproduccionIdeal));
 	}
 }

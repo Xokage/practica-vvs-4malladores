@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import contenido.Anuncio;
 import contenido.Cancion;
 import contenido.Contenido;
 
@@ -27,7 +26,7 @@ public class TestCancion {
 	
 	@Test
 	public void obtenerListaReproduccionTest() {
-		List<Contenido> listaReproduccionIdeal = new ArrayList();
+		List<Contenido> listaReproduccionIdeal = new ArrayList<Contenido>();
 		listaReproduccionIdeal.add(cancion);
 		assertTrue(cancion.obtenerListaReproduccion().equals(listaReproduccionIdeal));
 	}

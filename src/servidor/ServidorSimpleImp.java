@@ -15,13 +15,13 @@ public class ServidorSimpleImp implements Servidor {
 	private String tokenContenido;
 	private List<Pair<String, Integer>> tokenValido;
 	
-	private Pair getToken(int chars) {
+	private Pair<String, Integer> getToken(int chars) {
 	    String CharSet = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!@#$";
 	    String Token = "";
 	    for (int a = 1; a <= chars; a++) {
 	        Token += CharSet.charAt(new Random().nextInt(CharSet.length()));
 	    }
-	    return new Pair(Token,10);
+	    return new Pair<String, Integer>(Token,10);
 	}
 
 	public ServidorSimpleImp(String nombre, List<Contenido> contenidoList,
@@ -55,11 +55,11 @@ public class ServidorSimpleImp implements Servidor {
 
 	@Override
 	public String alta() {
-		Pair par = null;
+		Pair<String, Integer> par = null;
 		boolean existe = true;
 		while (existe){
 			par = getToken(10);
-			for (Pair parLista : tokenValido) {
+			for (Pair<?, ?> parLista : tokenValido) {
                 if (parLista.getLeft().toString().equals(par.getLeft())) existe=true;
             }
 		}
