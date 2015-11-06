@@ -14,38 +14,24 @@ public class ServidorSimpleImp implements Servidor {
 	private List<Contenido> contenidoList;
 	private String tokenContenido;
 	private List<Pair<String, Integer>> tokenValido;
-	
-	private Pair getToken(int chars) {
-	    String CharSet = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!@#$";
-	    String Token = "";
-	    for (int a = 1; a <= chars; a++) {
-	        Token += CharSet.charAt(new Random().nextInt(CharSet.length()));
-	    }
-	    return new Pair(Token,10);
+
+	private Pair<String, Integer> getToken(int chars) {
+		String CharSet = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!@#$";
+		String Token = "";
+		for (int a = 1; a <= chars; a++) {
+			Token += CharSet.charAt(new Random().nextInt(CharSet.length()));
+		}
+		return new Pair<String, Integer>(Token, 10);
 	}
 
 	public ServidorSimpleImp(String nombre, List<Contenido> contenidoList,
 			String tokenContenido, String tokenValido) {
 		this.nombre = nombre;
-		this.contenidoList = contenidoList;
+		this.contenidoList = contenidoList == null ? new ArrayList<>()
+				: contenidoList;
 		this.tokenContenido = tokenContenido;
 		this.tokenValido = new ArrayList<>();
 		this.tokenValido.add(new Pair<String, Integer>(tokenValido, 10));
-	}
-
-	public ServidorSimpleImp(String nombre, String tokenContenido,
-			String tokenValido) {
-		this.nombre = nombre;
-		this.contenidoList = new ArrayList<>();
-		this.tokenContenido = tokenContenido;
-		this.tokenValido = new ArrayList<>();
-		this.tokenValido.add(new Pair<String, Integer>(tokenValido, 10));
-	}
-
-	public ServidorSimpleImp(String nombre) {
-		this.nombre = nombre;
-		this.contenidoList = new ArrayList<>();
-		this.tokenValido = new ArrayList<>();
 	}
 
 	@Override
@@ -55,13 +41,13 @@ public class ServidorSimpleImp implements Servidor {
 
 	@Override
 	public String alta() {
-		Pair par = getToken(10);
-		while (tokenValido.contains(par)){
-			par=getToken(10);
+		Pair<String, Integer> par = getToken(10);
+		while (tokenValido.contains(par)) {
+			par = getToken(10);
 		}
 		tokenValido.add(par);
 		return par.getLeft().toString();
-		
+
 	}
 
 	@Override
@@ -74,8 +60,7 @@ public class ServidorSimpleImp implements Servidor {
 
 	@Override
 	public void agregar(Contenido contenido, String token) {
-		if (!this.contenidoList.contains(contenido)
-				&& this.tokenContenido.equals(token))
+		if (this.tokenContenido.equals(token))
 			this.contenidoList.add(contenido);
 	}
 
@@ -102,11 +87,9 @@ public class ServidorSimpleImp implements Servidor {
 		// mentres estÃ¡ pedindo contido.
 		int contidosVisualizados = 0;
 		for (Contenido elemento : this.contenidoList) {
-
 			if (elemento.obtenerTitulo().contains(subcadena)) {
 
-				if (user.getRight() <= 0) { // usuario queda sen intentos,
-											// comezan os anuncios
+				if (user == null) {
 					if (contidosVisualizados == 0)
 						resultado.add(new Anuncio()); // Comeza cun anuncio
 					contidosVisualizados++;
@@ -115,16 +98,18 @@ public class ServidorSimpleImp implements Servidor {
 					if (contidosVisualizados % 3 == 0)
 						resultado.add(new Anuncio()); // Un anuncio cada 3
 														// contidos
-				} else {
-					resultado.add(elemento); // Añadimos elemento que contén a
-												// subcadena
+				} else if (user.getRight() <= 0)
+					user = null;
+				else {
+					resultado.add(elemento); // Añadimos elemento
 					user = new Pair<String, Integer>(user.getLeft(),
 							user.getRight() - 1);// Usuario gasta un intento
 				}
 			}
 		}
 
-		if (user.getRight() > 0) // Token non é vacío, por tanto mantense.
+		if (user != null)
+			if (user.getRight() > 0) // Token non é vacío, por tanto mantense.
 			tokenValido.add(user);
 
 		return resultado;
