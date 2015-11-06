@@ -55,9 +55,13 @@ public class ServidorSimpleImp implements Servidor {
 
 	@Override
 	public String alta() {
-		Pair par = getToken(10);
-		while (tokenValido.contains(par)){
-			par=getToken(10);
+		Pair par = null;
+		boolean existe = true;
+		while (existe){
+			par = getToken(10);
+			for (Pair parLista : tokenValido) {
+                if (parLista.getLeft().toString().equals(par.getLeft())) existe=true;
+            }
 		}
 		tokenValido.add(par);
 		return par.getLeft().toString();
