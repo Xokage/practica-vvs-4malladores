@@ -13,6 +13,7 @@ public class Emisora implements Contenido {
 		this.titulo = titulo;
 		this.duracion = duracion;
 		this.listaReproduccion = new ArrayList<Contenido>();
+		listaReproduccion.add(this);
 	}
 	
 	@Override
