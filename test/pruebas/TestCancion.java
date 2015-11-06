@@ -33,10 +33,10 @@ public class TestCancion {
 	
 	@Test
 	public void buscarTest() {
-		List<Contenido> listaReproduccionIdeal = new ArrayList();
+		List<Contenido> listaReproduccionIdeal = new ArrayList<Contenido>();
 		listaReproduccionIdeal.add(cancion);
 		assertTrue(cancion.buscar("Mi gran noche").equals(listaReproduccionIdeal));
-		listaReproduccionIdeal = new ArrayList();
+		listaReproduccionIdeal = new ArrayList<Contenido>();
 		assertTrue(cancion.buscar("OTRA COSA").equals(listaReproduccionIdeal));
 	}
 
