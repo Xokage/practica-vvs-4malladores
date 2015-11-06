@@ -8,23 +8,23 @@ import contenido.Contenido;
 
 public class ServidorSimpleConRespaldoImp extends ServidorSimpleImp {
 
-	private ServidorRespaldoImp servidorRespaldo;
+	private Servidor servidorRespaldo;
 	
 	public ServidorSimpleConRespaldoImp(String nombre, List<Contenido> contenidoList,
-			String tokenContenido, String tokenValido, ServidorRespaldoImp servidorRespaldo) throws BackupServerException{
+			String tokenContenido, String tokenValido, Servidor servidorRespaldo) throws BackupServerException{
 		super(nombre,contenidoList,tokenContenido,tokenValido);
 		if (servidorRespaldo == null) throw new BackupServerException();
 		this.servidorRespaldo = servidorRespaldo;
 	}
 
 	public ServidorSimpleConRespaldoImp(String nombre, String tokenContenido,
-			String tokenValido, ServidorRespaldoImp servidorRespaldo) throws BackupServerException{
+			String tokenValido, Servidor servidorRespaldo) throws BackupServerException{
 		super(nombre,tokenContenido,tokenValido);
 		if (servidorRespaldo == null) throw new BackupServerException();
 		this.servidorRespaldo = servidorRespaldo;
 	}
 
-	public ServidorSimpleConRespaldoImp(String nombre, ServidorRespaldoImp servidorRespaldo) throws BackupServerException {
+	public ServidorSimpleConRespaldoImp(String nombre, Servidor servidorRespaldo) throws BackupServerException {
 		super(nombre);
 		if (servidorRespaldo == null) throw new BackupServerException();
 		this.servidorRespaldo = servidorRespaldo;
@@ -32,10 +32,10 @@ public class ServidorSimpleConRespaldoImp extends ServidorSimpleImp {
 	
 	@Override
 	public List<Contenido> buscar(String subcadena, String token) {
-		
-		if(super.buscar(subcadena,token).isEmpty())
+		List<Contenido> resultado = super.buscar(subcadena,token);
+		if(resultado.isEmpty())
 			return servidorRespaldo.buscar(subcadena,token);
-		else return super.buscar(subcadena, token);
+		else return resultado;
 			
 	}
 
