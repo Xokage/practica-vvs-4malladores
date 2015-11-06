@@ -10,7 +10,7 @@ public class Cancion implements Contenido {
 	
 	public Cancion(String nombre, int duracion){
 		titulo = nombre;
-		duracion = duracion;
+		this.duracion = duracion;
 		listaReproduccion = new ArrayList<Contenido>();
 		listaReproduccion.add(this);
 	}

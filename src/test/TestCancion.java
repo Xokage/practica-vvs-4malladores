@@ -8,35 +8,37 @@ import java.util.List;
 import org.junit.Test;
 
 import contenido.Anuncio;
+import contenido.Cancion;
 import contenido.Contenido;
 
-public class TestAnuncio {
+public class TestCancion {
 	
-	Anuncio anuncio = new Anuncio();
+	Cancion cancion = new Cancion("Mi gran noche",3);
 
 	@Test
 	public void obtenerTituloTest() {
-		assertTrue(anuncio.obtenerTitulo().equals("PUBLICIDAD"));
+		assertTrue(cancion.obtenerTitulo().equals("Mi gran noche"));
 	}
 	
 	@Test
 	public void obtenerDuracionTest() {
-		assertTrue(Integer.compare(anuncio.obtenerDuracion(),5)==0);
+		assertTrue(Integer.compare(cancion.obtenerDuracion(),3)==0);
 	}
 	
 	@Test
 	public void obtenerListaReproduccionTest() {
 		List<Contenido> listaReproduccionIdeal = new ArrayList();
-		listaReproduccionIdeal.add(anuncio);
-		assertTrue(anuncio.obtenerListaReproduccion().equals(listaReproduccionIdeal));
+		listaReproduccionIdeal.add(cancion);
+		assertTrue(cancion.obtenerListaReproduccion().equals(listaReproduccionIdeal));
 	}
 	
 	@Test
 	public void buscarTest() {
 		List<Contenido> listaReproduccionIdeal = new ArrayList();
-		listaReproduccionIdeal.add(anuncio);
-		assertTrue(anuncio.buscar("PUBLICIDAD").equals(listaReproduccionIdeal));
+		listaReproduccionIdeal.add(cancion);
+		assertTrue(cancion.buscar("Mi gran noche").equals(listaReproduccionIdeal));
 		listaReproduccionIdeal = new ArrayList();
-		assertTrue(anuncio.buscar("OTRA COSA").equals(listaReproduccionIdeal));
+		assertTrue(cancion.buscar("OTRA COSA").equals(listaReproduccionIdeal));
 	}
+
 }
