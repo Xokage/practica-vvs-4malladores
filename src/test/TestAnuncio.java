@@ -27,7 +27,7 @@ public class TestAnuncio {
 	@Test
 	public void obtenerListaReproduccionTest() {
 		List<Contenido> listaReproduccionIdeal = new ArrayList();
-		listaReproduccionIdeal.add(anuncio);
+		listaReproduccionIdeal.add(anuncio); 
 		assertTrue(anuncio.obtenerListaReproduccion().equals(listaReproduccionIdeal));
 	}
 	
