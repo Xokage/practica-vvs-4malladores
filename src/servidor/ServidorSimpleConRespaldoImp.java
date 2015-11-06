@@ -11,18 +11,23 @@ public class ServidorSimpleConRespaldoImp extends ServidorSimpleImp {
 	private ServidorRespaldoImp servidorRespaldo;
 	
 	public ServidorSimpleConRespaldoImp(String nombre, List<Contenido> contenidoList,
-			String tokenContenido, String tokenValido, ServidorRespaldoImp servidorRespaldo) {
+			String tokenContenido, String tokenValido, ServidorRespaldoImp servidorRespaldo) throws BackupServerException{
 		super(nombre,contenidoList,tokenContenido,tokenValido);
+		if (servidorRespaldo == null) throw new BackupServerException();
 		this.servidorRespaldo = servidorRespaldo;
 	}
 
 	public ServidorSimpleConRespaldoImp(String nombre, String tokenContenido,
-			String tokenValido) {
+			String tokenValido, ServidorRespaldoImp servidorRespaldo) throws BackupServerException{
 		super(nombre,tokenContenido,tokenValido);
+		if (servidorRespaldo == null) throw new BackupServerException();
+		this.servidorRespaldo = servidorRespaldo;
 	}
 
-	public ServidorSimpleConRespaldoImp(String nombre) {
+	public ServidorSimpleConRespaldoImp(String nombre, ServidorRespaldoImp servidorRespaldo) throws BackupServerException {
 		super(nombre);
+		if (servidorRespaldo == null) throw new BackupServerException();
+		this.servidorRespaldo = servidorRespaldo;
 	}
 	
 	@Override
