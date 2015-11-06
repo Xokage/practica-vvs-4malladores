@@ -18,8 +18,9 @@ public class ServidorSimpleConRespaldoImp extends ServidorSimpleImp {
 	@Override
 	public List<Contenido> buscar(String subcadena, String token) {
 		List<Contenido> resultado = super.buscar(subcadena,token);
-		if(resultado.isEmpty())
+		if(resultado.isEmpty()){
 			return servidorRespaldo.buscar(subcadena,token);
+		}
 		else return resultado;
 			
 	}
