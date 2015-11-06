@@ -20,6 +20,4 @@ public interface Contenido {
 	
 	//En canciones y anuncios eliminar no tiene efecto
 	public void eliminar(Contenido contenido);
-	
-	public String getTitulo();
 }

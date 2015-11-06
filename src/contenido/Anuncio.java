@@ -48,13 +48,4 @@ public class Anuncio implements Contenido {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	@Override
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
 }

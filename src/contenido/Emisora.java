@@ -43,7 +43,7 @@ public class Emisora implements Contenido {
 		
 		for (Contenido c : listaReproduccion) {
 			
-			if (c.getTitulo().contains(subcadena)){
+			if (c.obtenerTitulo().contains(subcadena)){
 				
 				lista.add(c);
 			}
@@ -66,15 +66,6 @@ public class Emisora implements Contenido {
 		
 		listaReproduccion.remove(contenido);
 		
-	}
-	
-	@Override
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
 	}
 
 
