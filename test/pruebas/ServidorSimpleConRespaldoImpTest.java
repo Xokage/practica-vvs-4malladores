@@ -23,7 +23,7 @@ public class ServidorSimpleConRespaldoImpTest {
 		String nombre = "Servidor1";
 		String passwd = "1234567890";
 		String tokenValido = "valido";
-		ServidorSimpleConRespaldoImp s1 = new ServidorSimpleConRespaldoImp(nombre, null,
+		new ServidorSimpleConRespaldoImp(nombre, null,
 				passwd, tokenValido, null);
 	}
 	
