@@ -1,4 +1,4 @@
-package pruebas;
+package test;
 
 import static org.junit.Assert.*;
 
@@ -10,7 +10,7 @@ import org.junit.Test;
 import contenido.Cancion;
 import contenido.Contenido;
 
-public class TestCancion {
+public class CancionTest {
 	
 	Cancion cancion = new Cancion("Mi gran noche",3);
 

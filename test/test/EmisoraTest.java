@@ -1,4 +1,4 @@
-package pruebas;
+package test;
 
 import static org.junit.Assert.assertTrue;
 
@@ -12,7 +12,7 @@ import contenido.Cancion;
 import contenido.Contenido;
 import contenido.Emisora;
 
-public class TestEmisora {
+public class EmisoraTest {
 	
 	Emisora emisora = new Emisora("La mejor del mundo",9);
 

@@ -1,4 +1,4 @@
-package pruebas;
+package test;
 
 import static org.junit.Assert.*;
 
@@ -10,7 +10,7 @@ import org.junit.Test;
 import contenido.Anuncio;
 import contenido.Contenido;
 
-public class TestAnuncio {
+public class AnuncioTest {
 	
 	Anuncio anuncio = new Anuncio();
 
