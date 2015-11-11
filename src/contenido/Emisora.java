@@ -23,9 +23,9 @@ public class Emisora implements Contenido {
 	 * @param titulo título de la emisora.
 	 * @param duracion duración de la emisora (en segundos).
 	 */
-	public Emisora(String titulo, Integer duracion) {
+	public Emisora(String titulo) {
 		this.titulo = titulo;
-		this.duracion = duracion;
+		this.duracion = 0;
 		this.listaReproduccion = new ArrayList<Contenido>();
 		listaReproduccion.add(this);
 	}
@@ -88,6 +88,7 @@ public class Emisora implements Contenido {
 		
 		Integer indice = listaReproduccion.indexOf(predecesor);
 		listaReproduccion.add(indice + 1, contenido);
+		this.duracion += contenido.obtenerDuracion();
 		
 	}
 
@@ -98,6 +99,7 @@ public class Emisora implements Contenido {
 	public void eliminar(Contenido contenido) {
 		
 		listaReproduccion.remove(contenido);
+		this.duracion -= contenido.obtenerDuracion();
 		
 	}
 

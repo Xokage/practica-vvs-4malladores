@@ -18,7 +18,7 @@ import contenido.Emisora;
 public class EmisoraTest {
 	
 	/** La emisora. */
-	Emisora emisora = new Emisora("La mejor del mundo",9);
+	Emisora emisora = new Emisora("La mejor del mundo");
 
 	/**
 	 * Obtener titulo test.
@@ -33,7 +33,9 @@ public class EmisoraTest {
 	 */
 	@Test
 	public void obtenerDuracionTest() {
-		assertTrue(Integer.compare(emisora.obtenerDuracion(),9)==0);
+		Cancion cancion = new Cancion ("Mi gran noche",3);
+		emisora.agregar(cancion, emisora);
+		assertTrue(Integer.compare(emisora.obtenerDuracion(),3)==0);
 	}
 	
 	/**
