@@ -3,12 +3,26 @@ package contenido;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase Emisora.
+ */
 public class Emisora implements Contenido {
 	
+	/** Título. */
 	private String titulo;
+	
+	/** Duración. */
 	private Integer duracion;
+	
+	/** Lista de reproducción de contenido. */
 	private List<Contenido> listaReproduccion;
 	
+	/**
+	 * Instancia una nueva emisora.
+	 *
+	 * @param titulo título de la emisora.
+	 * @param duracion duración de la emisora (en segundos).
+	 */
 	public Emisora(String titulo, Integer duracion) {
 		this.titulo = titulo;
 		this.duracion = duracion;
@@ -16,6 +30,9 @@ public class Emisora implements Contenido {
 		listaReproduccion.add(this);
 	}
 	
+	/**
+	 * @see contenido.Contenido#obtenerTitulo()
+	 */
 	@Override
 	public String obtenerTitulo() {
 		
@@ -23,6 +40,9 @@ public class Emisora implements Contenido {
 
 	}
 
+	/**
+	 * @see contenido.Contenido#obtenerDuracion()
+	 */
 	@Override
 	public Integer obtenerDuracion() {
 		
@@ -30,6 +50,9 @@ public class Emisora implements Contenido {
 		
 	}
 
+	/**
+	 * @see contenido.Contenido#obtenerListaReproduccion()
+	 */
 	@Override
 	public List<Contenido> obtenerListaReproduccion() {
 		
@@ -37,6 +60,9 @@ public class Emisora implements Contenido {
 		
 	}
 
+	/**
+	 * @see contenido.Contenido#buscar(java.lang.String)
+	 */
 	@Override
 	public List<Contenido> buscar(String subcadena) {
 		
@@ -54,6 +80,9 @@ public class Emisora implements Contenido {
 		return lista;
 	}
 
+	/**
+	 * @see contenido.Contenido#agregar(contenido.Contenido, contenido.Contenido)
+	 */
 	@Override
 	public void agregar(Contenido contenido, Contenido predecesor) {
 		
@@ -62,6 +91,9 @@ public class Emisora implements Contenido {
 		
 	}
 
+	/**
+	 * @see contenido.Contenido#eliminar(contenido.Contenido)
+	 */
 	@Override
 	public void eliminar(Contenido contenido) {
 		
