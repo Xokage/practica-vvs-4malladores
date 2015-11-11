@@ -11,8 +11,14 @@ import contenido.Contenido;
 import servidor.Servidor;
 import servidor.ServidorSimpleImp;
 
-public class ServidortSimpleImplTest {
+/**
+ * Tests para la clase Servidor Simple Impl.
+ */
+public class ServidorSimpleImplTest {
 
+	/**
+	 * Obtener nombre test.
+	 */
 	@Test
 	public void obtenerNombreTest() {
 		String nombre = "ServidorTest";
@@ -21,6 +27,9 @@ public class ServidortSimpleImplTest {
 	}
 
 	
+	/**
+	 * Agregar test.
+	 */
 	@Test
 	public void agregarTest() {
 		String nombre = "ServidorTest";
@@ -35,6 +44,9 @@ public class ServidortSimpleImplTest {
 	}
 
 	
+	/**
+	 * Eliminar test.
+	 */
 	@Test
 	public void eliminarTest() {
 		String nombre = "ServidorTest";
@@ -51,6 +63,9 @@ public class ServidortSimpleImplTest {
 		assertEquals(resultDespois.size(),0);
 	}
 
+	/**
+	 * Buscar token invalido test.
+	 */
 	@Test
 	public void buscarTokenInvalidoTest() {
 		String nombre = "ServidorTest";
@@ -73,6 +88,9 @@ public class ServidortSimpleImplTest {
 		assertEquals(result.get(i++).obtenerTitulo(),"PUBLICIDAD");
 	}
 	
+	/**
+	 * Buscar con token válido test.
+	 */
 	@Test
 	public void buscarTokenValidoTest() {
 		String nombre = "ServidorTest";
@@ -92,6 +110,9 @@ public class ServidortSimpleImplTest {
 		assertEquals(titulo,result.get(i++).obtenerTitulo());
 	}
 
+	/**
+	 * Buscar con token valido más de diez elementos test.
+	 */
 	@Test
 	public void buscarTokenValidoMasDeDiezTest() {
 		String nombre = "ServidorTest";

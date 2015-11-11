@@ -16,8 +16,16 @@ import contenido.Contenido;
 
 
 
+/**
+ * Tests para la clase Servidor Simple con Respaldo.
+ */
 public class ServidorSimpleConRespaldoImpTest {
 
+	/**
+	 * Buscar server backup inválido test.
+	 *
+	 * @throws BackupServerException la excepción BackupServerException
+	 */
 	@Test (expected = BackupServerException.class)
 	public void buscarInvalidBackupServerTest() throws BackupServerException {
 		String nombre = "Servidor1";
@@ -27,6 +35,11 @@ public class ServidorSimpleConRespaldoImpTest {
 				passwd, tokenValido, null);
 	}
 	
+	/**
+	 * Buscar test.
+	 *
+	 * @throws BackupServerException la excepción BackupServerException
+	 */
 	@Test
 	public void buscarTest() throws BackupServerException{
 		String nombre = "Servidor1";
@@ -58,6 +71,11 @@ public class ServidorSimpleConRespaldoImpTest {
 		assertEquals(result.get(1).obtenerTitulo(),titulo2);
 	}
 	
+	/**
+	 * Buscar sin contenido test.
+	 *
+	 * @throws BackupServerException la excepción BackupServerException
+	 */
 	@Test
 	public void buscarWithoutContentTest() throws BackupServerException{
 		String nombre = "Servidor1";
