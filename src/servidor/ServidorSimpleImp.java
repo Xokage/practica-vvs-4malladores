@@ -8,13 +8,29 @@ import util.Pair;
 import contenido.Anuncio;
 import contenido.Contenido;
 
+/**
+ * Clase ServidorSimpleImp.
+ */
 public class ServidorSimpleImp implements Servidor {
 
+	/** Nombre del servidor. */
 	private String nombre;
+	
+	/** Lista de contenido del servidor. */
 	private List<Contenido> contenidoList;
+	
+	/** Token para modificar el contenido. */
 	private String tokenContenido;
+	
+	/** Lista de tokens validos para buscar. */
 	private List<Pair<String, Integer>> tokenValido;
 
+	/**
+	 * Genera un nuevo token aleatoriamente.
+	 *
+	 * @param chars numero de letras.
+	 * @return nuevo token aleatorio.
+	 */
 	private Pair<String, Integer> getToken(int chars) {
 	    String CharSet = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!@#$";
 	    String Token = "";
@@ -24,6 +40,14 @@ public class ServidorSimpleImp implements Servidor {
 	    return new Pair<String, Integer>(Token,10);
 	}
 	
+	/**
+	 * Instancia un nuevo servidor simple.
+	 *
+	 * @param nombre el nombre del servidor.
+	 * @param contenidoList la lista con el contenido del servidor.
+	 * @param tokenContenido el token para modificar contenido.
+	 * @param tokenValido token para realizar búsquedas.
+	 */
 	public ServidorSimpleImp(String nombre, List<Contenido> contenidoList,
 			String tokenContenido, String tokenValido) {
 		this.nombre = nombre;
@@ -34,6 +58,13 @@ public class ServidorSimpleImp implements Servidor {
 		this.tokenValido.add(new Pair<String, Integer>(tokenValido, 10));
 	}
 	
+	/**
+	 * Instancia un nuevo servidor simple sin contenido.
+	 *
+	 * @param nombre el nombre del servidor.
+	 * @param tokenContenido el token para modificar contenido.
+	 * @param tokenValido token para realizar búsquedas.
+	 */
 	public ServidorSimpleImp(String nombre, String tokenContenido,
 			String tokenValido) {
 		this.nombre = nombre;
@@ -43,17 +74,28 @@ public class ServidorSimpleImp implements Servidor {
 		this.tokenValido.add(new Pair<String, Integer>(tokenValido, 10));
 	}
 
+	/**
+	 * Instancia un nuevo servidor simple sin contenido ni tokens definidos.
+	 *
+	 * @param nombre el nombre del servidor.
+	 */
 	public ServidorSimpleImp(String nombre) {
 		this.nombre = nombre;
 		this.contenidoList = new ArrayList<>();
 		this.tokenValido = new ArrayList<>();
 	}
 
+	/**
+	 * @see servidor.Servidor#obtenerNombre()
+	 */
 	@Override
 	public String obtenerNombre() {
 		return nombre;
 	}
 
+	/**
+	 * @see servidor.Servidor#alta()
+	 */
 	@Override
 	public String alta() {
 		Pair<String, Integer> par = null;
@@ -69,6 +111,9 @@ public class ServidorSimpleImp implements Servidor {
 		
 	}
 
+	/**
+	 * @see servidor.Servidor#baja(java.lang.String)
+	 */
 	@Override
 	public void baja(String token) {
 		for (Pair<String, Integer> par : this.tokenValido) {
@@ -77,12 +122,18 @@ public class ServidorSimpleImp implements Servidor {
 		}
 	}
 
+	/**
+	 * @see servidor.Servidor#agregar(contenido.Contenido, java.lang.String)
+	 */
 	@Override
 	public void agregar(Contenido contenido, String token) {
 		if (this.tokenContenido.equals(token))
 			this.contenidoList.add(contenido);
 	}
 
+	/**
+	 * @see servidor.Servidor#eliminar(contenido.Contenido, java.lang.String)
+	 */
 	@Override
 	public void eliminar(Contenido contenido, String token) {
 		if (this.contenidoList.contains(contenido)
@@ -91,6 +142,9 @@ public class ServidorSimpleImp implements Servidor {
 
 	}
 
+	/**
+	 * @see servidor.Servidor#buscar(java.lang.String, java.lang.String)
+	 */
 	@Override
 	public List<Contenido> buscar(String subcadena, String token) {
 		List<Contenido> resultado = new ArrayList<>();
