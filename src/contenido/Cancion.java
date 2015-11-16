@@ -59,7 +59,7 @@ public class Cancion implements Contenido {
 	 */
 	@Override
 	public List<Contenido> buscar(String subcadena) {
-		if (titulo.equalsIgnoreCase(subcadena))
+		if (titulo.contains(subcadena))
 			return listaReproduccion;
 		else return new ArrayList<Contenido>();
 	}
