@@ -25,6 +25,9 @@ public class ServidorSimpleImp implements Servidor {
 	/** Lista de tokens validos para buscar. */
 	private List<Pair<String, Integer>> tokensValidos;
 
+	/** Número de intentos por token. */
+	private final int TRIES_PER_TOKEN = 10;
+	
 	/**
 	 * Genera un nuevo token aleatoriamente.
 	 *
@@ -37,7 +40,7 @@ public class ServidorSimpleImp implements Servidor {
 	    for (int a = 1; a <= chars; a++) {
 	        Token += CharSet.charAt(new Random().nextInt(CharSet.length()));
 	    }
-	    return new Pair<String, Integer>(Token,10);
+	    return new Pair<String, Integer>(Token,TRIES_PER_TOKEN);
 	}
 	
 	/**
@@ -55,7 +58,7 @@ public class ServidorSimpleImp implements Servidor {
 				: contenidoList;
 		this.tokenMaestro = tokenContenido;
 		this.tokensValidos = new ArrayList<>();
-		this.tokensValidos.add(new Pair<String, Integer>(tokenValido, 10));
+		this.tokensValidos.add(new Pair<String, Integer>(tokenValido, TRIES_PER_TOKEN));
 	}
 	
 	/**
@@ -69,9 +72,12 @@ public class ServidorSimpleImp implements Servidor {
 			String tokenValido) {
 		this.nombre = nombre;
 		this.contenidoList = new ArrayList<>();
+
+
+
 		this.tokenMaestro = tokenContenido;
 		this.tokensValidos = new ArrayList<>();
-		this.tokensValidos.add(new Pair<String, Integer>(tokenValido, 10));
+		this.tokensValidos.add(new Pair<String, Integer>(tokenValido, TRIES_PER_TOKEN));
 	}
 
 	/**
@@ -82,6 +88,7 @@ public class ServidorSimpleImp implements Servidor {
 	public ServidorSimpleImp(String nombre) {
 		this.nombre = nombre;
 		this.contenidoList = new ArrayList<>();
+
 		this.tokensValidos = new ArrayList<>();
 	}
 
@@ -101,11 +108,15 @@ public class ServidorSimpleImp implements Servidor {
 		Pair<String, Integer> par = null;
 		boolean existe = true;
 		while (existe){
-			par = getToken(10);
+
+			existe=false;
+			par = getToken(TRIES_PER_TOKEN);
+
 			for (Pair<?, ?> parLista : tokensValidos) {
                 if (parLista.getLeft().toString().equals(par.getLeft())) existe=true;
             }
 		}
+
 		tokensValidos.add(par);
 		return par.getLeft().toString();
 		
@@ -116,8 +127,10 @@ public class ServidorSimpleImp implements Servidor {
 	 */
 	@Override
 	public void baja(String token) {
+
 		for (Pair<String, Integer> par : this.tokensValidos) {
 			if (par.getLeft().equals(token))
+
 				this.tokensValidos.remove(par);
 		}
 	}
@@ -127,6 +140,7 @@ public class ServidorSimpleImp implements Servidor {
 	 */
 	@Override
 	public void agregar(Contenido contenido, String token) {
+
 		if (this.tokenMaestro.equals(token))
 			this.contenidoList.add(contenido);
 	}
@@ -137,6 +151,7 @@ public class ServidorSimpleImp implements Servidor {
 	@Override
 	public void eliminar(Contenido contenido, String token) {
 		if (this.contenidoList.contains(contenido)
+
 				&& this.tokenMaestro.equals(token))
 			this.contenidoList.remove(contenido);
 
@@ -150,11 +165,13 @@ public class ServidorSimpleImp implements Servidor {
 		List<Contenido> resultado = new ArrayList<>();
 		Pair<String, Integer> user = null;
 
+
 		for (Pair<String, Integer> tmpUser : this.tokensValidos) {
 			if (tmpUser.getLeft().equals(token))
 				user = tmpUser;
 		}
 		if (user != null)
+
 			this.tokensValidos.remove(user);
 		// Quitamos o usuario da lista de tokens validos
 		// mentres estÃ¡ pedindo contido.
@@ -183,6 +200,7 @@ public class ServidorSimpleImp implements Servidor {
 
 		if (user != null)
 			if (user.getRight() > 0) // Token non é vacío, por tanto mantense.
+
 			tokensValidos.add(user);
 
 		return resultado;
