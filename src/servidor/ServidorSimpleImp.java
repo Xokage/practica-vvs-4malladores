@@ -25,6 +25,10 @@ public class ServidorSimpleImp implements Servidor {
 	/** Lista de tokens validos para buscar. */
 	private List<Pair<String, Integer>> tokenValido;
 
+	/** Número de intentos por token. */
+	private final int TRIES_PER_TOKEN = 10;
+	
+	
 	/**
 	 * Genera un nuevo token aleatoriamente.
 	 *
@@ -37,7 +41,7 @@ public class ServidorSimpleImp implements Servidor {
 	    for (int a = 1; a <= chars; a++) {
 	        Token += CharSet.charAt(new Random().nextInt(CharSet.length()));
 	    }
-	    return new Pair<String, Integer>(Token,10);
+	    return new Pair<String, Integer>(Token,TRIES_PER_TOKEN);
 	}
 	
 	/**
@@ -55,7 +59,7 @@ public class ServidorSimpleImp implements Servidor {
 				: contenidoList;
 		this.tokenContenido = tokenContenido;
 		this.tokenValido = new ArrayList<>();
-		this.tokenValido.add(new Pair<String, Integer>(tokenValido, 10));
+		this.tokenValido.add(new Pair<String, Integer>(tokenValido, TRIES_PER_TOKEN));
 	}
 	
 	/**
@@ -71,7 +75,7 @@ public class ServidorSimpleImp implements Servidor {
 		this.contenidoList = new ArrayList<>();
 		this.tokenContenido = tokenContenido;
 		this.tokenValido = new ArrayList<>();
-		this.tokenValido.add(new Pair<String, Integer>(tokenValido, 10));
+		this.tokenValido.add(new Pair<String, Integer>(tokenValido, TRIES_PER_TOKEN));
 	}
 
 	/**
@@ -101,7 +105,7 @@ public class ServidorSimpleImp implements Servidor {
 		Pair<String, Integer> par = null;
 		boolean existe = true;
 		while (existe){
-			par = getToken(10);
+			par = getToken(TRIES_PER_TOKEN);
 			for (Pair<?, ?> parLista : tokenValido) {
                 if (parLista.getLeft().toString().equals(par.getLeft())) existe=true;
             }
