@@ -101,6 +101,7 @@ public class ServidorSimpleImp implements Servidor {
 		Pair<String, Integer> par = null;
 		boolean existe = true;
 		while (existe){
+			existe=false;
 			par = getToken(10);
 			for (Pair<?, ?> parLista : tokenValido) {
                 if (parLista.getLeft().toString().equals(par.getLeft())) existe=true;
