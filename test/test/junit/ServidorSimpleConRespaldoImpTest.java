@@ -1,4 +1,4 @@
-package test;
+package test.junit;
 
 import static org.junit.Assert.*;
 
@@ -11,6 +11,9 @@ import servidor.BackupServerException;
 import servidor.Servidor;
 import servidor.ServidorSimpleConRespaldoImp;
 import servidor.ServidorSimpleImp;
+import test.generators.ContenidoDuracionGenerator;
+import test.generators.GeneralNameGenerator;
+import test.generators.ServidorTokenGenerator;
 import contenido.Cancion;
 import contenido.Contenido;
 
@@ -21,6 +24,17 @@ import contenido.Contenido;
  */
 public class ServidorSimpleConRespaldoImpTest {
 
+
+	/** Generador de nombres válidos. */
+	GeneralNameGenerator gNameGen = new GeneralNameGenerator();
+
+	/** Generador de duraciones válidas. */
+	ContenidoDuracionGenerator cDuracionGen = new ContenidoDuracionGenerator();
+
+	/** Generador de duraciones válidas. */
+	ServidorTokenGenerator sTokenGen = new ServidorTokenGenerator();
+
+
 	/**
 	 * Buscar server backup inválido test.
 	 *
@@ -28,9 +42,10 @@ public class ServidorSimpleConRespaldoImpTest {
 	 */
 	@Test (expected = BackupServerException.class)
 	public void buscarInvalidBackupServerTest() throws BackupServerException {
-		String nombre = "Servidor1";
-		String passwd = "1234567890";
-		String tokenValido = "valido";
+		String nombre = gNameGen.next();
+		String passwd = gNameGen.next();
+		String tokenValido = sTokenGen.next().getLeft();
+		
 		new ServidorSimpleConRespaldoImp(nombre, null,
 				passwd, tokenValido, null);
 	}
@@ -42,20 +57,25 @@ public class ServidorSimpleConRespaldoImpTest {
 	 */
 	@Test
 	public void buscarTest() throws BackupServerException{
-		String nombre = "Servidor1";
-		String passwd = "1234567890";
-		String tokenValido = "valido";
+		String nombre = gNameGen.next();
+		String passwd = gNameGen.next();
+		String tokenValido = sTokenGen.next().getLeft();
+		
 		Servidor servidor_respaldo = new ServidorSimpleImp("ServidorSimple",null,passwd,tokenValido);
 		ServidorSimpleConRespaldoImp s1 = new ServidorSimpleConRespaldoImp(nombre, null,
 				passwd, tokenValido, servidor_respaldo);
 		
-		String titulo = "Someone like you";
-		String titulo1 = "Paradise city";
-		String titulo2 = "Tsunami";
+		String titulo = gNameGen.next();
+		String titulo1 = gNameGen.next();
+		String titulo2 = gNameGen.next();
 		
-		Contenido cancion = new Cancion(titulo, 60);
-		Contenido cancion1 = new Cancion(titulo1, 60);
-		Contenido cancion2 = new Cancion(titulo2, 60);
+		Integer duracion = cDuracionGen.next();
+		Integer duracion1 = cDuracionGen.next();
+		Integer duracion2 = cDuracionGen.next();
+		
+		Contenido cancion = new Cancion(titulo, duracion);
+		Contenido cancion1 = new Cancion(titulo1, duracion1);
+		Contenido cancion2 = new Cancion(titulo2, duracion2);
 		
 		servidor_respaldo.agregar(cancion, passwd);
 		servidor_respaldo.agregar(cancion1, passwd);
@@ -63,11 +83,17 @@ public class ServidorSimpleConRespaldoImpTest {
 		servidor_respaldo.agregar(cancion2, passwd);
 		
 		List<Contenido> result = s1.buscar(titulo, tokenValido);
+
 		assertEquals(result.get(0).obtenerTitulo(),titulo);
+		
 		result = s1.buscar(titulo1, tokenValido);
+		
 		assertEquals(result.get(0).obtenerTitulo(),titulo1);
+		
 		result = s1.buscar(titulo2, tokenValido);
+		
 		assertEquals(result.get(0).obtenerTitulo(),titulo2);
+		
 		assertEquals(result.get(1).obtenerTitulo(),titulo2);
 	}
 	
@@ -78,14 +104,15 @@ public class ServidorSimpleConRespaldoImpTest {
 	 */
 	@Test
 	public void buscarWithoutContentTest() throws BackupServerException{
-		String nombre = "Servidor1";
-		String passwd = "1234567890";
-		String tokenValido = "valido";
+		String nombre = gNameGen.next();
+		String passwd = gNameGen.next();
+		String tokenValido = sTokenGen.next().getLeft();
+		
 		Servidor servidor_respaldo = new ServidorSimpleImp("ServidorSimple",null,passwd,tokenValido);
 		ServidorSimpleConRespaldoImp s1 = new ServidorSimpleConRespaldoImp(nombre, null,
 				passwd, tokenValido, servidor_respaldo);
 	
-		List<Contenido> result = s1.buscar("Hey!", tokenValido);
+		List<Contenido> result = s1.buscar(gNameGen.next(), tokenValido);
 		List<Contenido> result1 = new ArrayList<Contenido>();
 		assertEquals(result,result1);
 	}
