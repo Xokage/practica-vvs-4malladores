@@ -44,14 +44,14 @@ public class ServidorSimpleConRespaldoImpPerformance {
 	 *             la excepción BackupServerException
 	 */
 	public void buscarPerformanceTest() throws BackupServerException {
-		List<Pair<Servidor,Pair<String, String>>> testElements = new ArrayList<>();
+		List<Pair<Servidor, Pair<String, String>>> testElements = new ArrayList<>();
 		for (int i = 0; i < IT_NUMBER; i++) {
 			String nombre = gNameGen.next();
 			String passwd = gNameGen.next();
 			String tokenValido = sTokenGen.next().getLeft();
 
-			Servidor servidor_respaldo = new ServidorSimpleImp("ServidorSimple",
-					null, passwd, tokenValido);
+			Servidor servidor_respaldo = new ServidorSimpleImp(nombre, null,
+					passwd, tokenValido);
 			ServidorSimpleConRespaldoImp s1 = new ServidorSimpleConRespaldoImp(
 					nombre, null, passwd, tokenValido, servidor_respaldo);
 
@@ -72,13 +72,15 @@ public class ServidorSimpleConRespaldoImpPerformance {
 			servidor_respaldo.agregar(cancion2, passwd);
 			servidor_respaldo.agregar(cancion2, passwd);
 
-			testElements.add(new Pair<>(s1,new Pair<>(titulo, tokenValido)));
+			testElements.add(new Pair<>(s1, new Pair<>(titulo, tokenValido)));
 		}
 
-		EtmPoint point = etmMonitor.createPoint("ServidorSimpleConRespaldo:buscar");
+		EtmPoint point = etmMonitor
+				.createPoint("ServidorSimpleConRespaldo:buscar");
 
-		for (Pair<Servidor,Pair<String, String>> pair : testElements) {
-			pair.getLeft().buscar(pair.getRight().getLeft(), pair.getRight().getRight());
+		for (Pair<Servidor, Pair<String, String>> pair : testElements) {
+			pair.getLeft().buscar(pair.getRight().getLeft(),
+					pair.getRight().getRight());
 		}
 
 		point.collect();
@@ -92,23 +94,24 @@ public class ServidorSimpleConRespaldoImpPerformance {
 	 */
 	public void buscarWithoutContentPerformanceTest()
 			throws BackupServerException {
-		List<Pair<Servidor,String>> testElements = new ArrayList<>();
+		List<Pair<Servidor, String>> testElements = new ArrayList<>();
 		for (int i = 0; i < IT_NUMBER; i++) {
 			String nombre = gNameGen.next();
 			String passwd = gNameGen.next();
 			String tokenValido = sTokenGen.next().getLeft();
 
-			Servidor servidor_respaldo = new ServidorSimpleImp("ServidorSimple",
-					null, passwd, tokenValido);
+			Servidor servidor_respaldo = new ServidorSimpleImp(nombre, null,
+					passwd, tokenValido);
 			ServidorSimpleConRespaldoImp s1 = new ServidorSimpleConRespaldoImp(
 					nombre, null, passwd, tokenValido, servidor_respaldo);
 
-			testElements.add(new Pair<>(s1,tokenValido));
+			testElements.add(new Pair<>(s1, tokenValido));
 		}
 
-		EtmPoint point = etmMonitor.createPoint("ServidorSimpleConRespaldo:buscarVacio");
+		EtmPoint point = etmMonitor
+				.createPoint("ServidorSimpleConRespaldo:buscarVacio");
 
-		for (Pair<Servidor,String> pair : testElements) {
+		for (Pair<Servidor, String> pair : testElements) {
 			pair.getLeft().buscar(gNameGen.next(), pair.getRight());
 		}
 

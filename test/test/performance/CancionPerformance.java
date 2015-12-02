@@ -44,7 +44,8 @@ public class CancionPerformance {
 			testElements.add(cancion);
 		}
 
-		EtmPoint point = etmMonitor.createPoint("CancionPerformance:obtenerTitulo");
+		EtmPoint point = etmMonitor
+				.createPoint("CancionPerformance:obtenerTitulo");
 
 		for (Cancion c : testElements) {
 			c.obtenerTitulo();
@@ -67,7 +68,8 @@ public class CancionPerformance {
 			testElements.add(cancion);
 		}
 
-		EtmPoint point = etmMonitor.createPoint("CancionPerformance:obtenerDuracion");
+		EtmPoint point = etmMonitor
+				.createPoint("CancionPerformance:obtenerDuracion");
 
 		for (Cancion c : testElements) {
 			c.obtenerDuracion();
@@ -90,7 +92,8 @@ public class CancionPerformance {
 			testElements.add(cancion);
 		}
 
-		EtmPoint point = etmMonitor.createPoint("CancionPerformance:obtenerListaReproduccion");
+		EtmPoint point = etmMonitor
+				.createPoint("CancionPerformance:obtenerListaReproduccion");
 
 		for (Cancion c : testElements) {
 			c.obtenerListaReproduccion();

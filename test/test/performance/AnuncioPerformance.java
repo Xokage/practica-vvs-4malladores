@@ -34,7 +34,8 @@ public class AnuncioPerformance {
 			testElements.add(new Anuncio());
 		}
 
-		EtmPoint point = etmMonitor.createPoint("AnuncioPerformance:obtenerTitulo");
+		EtmPoint point = etmMonitor
+				.createPoint("AnuncioPerformance:obtenerTitulo");
 
 		for (Anuncio a : testElements) {
 			a.obtenerTitulo();
@@ -52,7 +53,8 @@ public class AnuncioPerformance {
 			testElements.add(new Anuncio());
 		}
 
-		EtmPoint point = etmMonitor.createPoint("AnuncioPerformance:obtenerDuracion");
+		EtmPoint point = etmMonitor
+				.createPoint("AnuncioPerformance:obtenerDuracion");
 
 		for (Anuncio a : testElements) {
 			a.obtenerDuracion();

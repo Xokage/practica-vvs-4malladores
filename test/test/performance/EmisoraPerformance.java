@@ -122,7 +122,7 @@ public class EmisoraPerformance {
 			testElements.add(new Pair<>(emisora, nombreEmisora));
 		}
 
-		EtmPoint point = etmMonitor.createPoint("CancionPerformance:buscar");
+		EtmPoint point = etmMonitor.createPoint("EmisoraPerformance:buscar");
 
 		for (Pair<Emisora, String> pair : testElements) {
 			pair.getLeft().buscar(pair.getRight());
@@ -148,7 +148,7 @@ public class EmisoraPerformance {
 			testElements.add(new Pair<>(emisora, cancion));
 		}
 
-		EtmPoint point = etmMonitor.createPoint("CancionPerformance:agregar");
+		EtmPoint point = etmMonitor.createPoint("EmisoraPerformance:agregar");
 
 		for (Pair<Emisora, Cancion> pair : testElements) {
 			pair.getLeft().agregar(pair.getRight(), pair.getLeft());
@@ -174,7 +174,7 @@ public class EmisoraPerformance {
 			testElements.add(new Pair<>(emisora, cancion));
 		}
 
-		EtmPoint point = etmMonitor.createPoint("CancionPerformance:eliminar");
+		EtmPoint point = etmMonitor.createPoint("EmisoraPerformance:eliminar");
 
 		for (Pair<Emisora, Cancion> pair : testElements) {
 			pair.getLeft().eliminar(pair.getRight());

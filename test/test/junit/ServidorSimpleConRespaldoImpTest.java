@@ -31,7 +31,7 @@ public class ServidorSimpleConRespaldoImpTest {
 	/** Generador de duraciones válidas. */
 	ContenidoDuracionGenerator cDuracionGen = new ContenidoDuracionGenerator();
 
-	/** Generador de duraciones válidas. */
+	/** Generador de tokens válidos. */
 	ServidorTokenGenerator sTokenGen = new ServidorTokenGenerator();
 
 

@@ -1,5 +1,6 @@
 package test.performance;
 
+import servidor.BackupServerException;
 import etm.core.configuration.BasicEtmConfigurator;
 import etm.core.configuration.EtmManager;
 import etm.core.monitor.EtmMonitor;
@@ -14,29 +15,44 @@ public class GenerateReport {
 		setup();
 
 		// instantiate tests
-		AnuncioPerformance anuncioPerformance = new AnuncioPerformance();
-		CancionPerformance cancionPerformance = new CancionPerformance();
-		EmisoraPerformance emisoraPerformance = new EmisoraPerformance();
-		
+		AnuncioPerformance anuncio = new AnuncioPerformance();
+		CancionPerformance cancion = new CancionPerformance();
+		EmisoraPerformance emisora = new EmisoraPerformance();
+		ServidorSimpleConRespaldoImpPerformance servidorSimpleConRespaldo = new ServidorSimpleConRespaldoImpPerformance();
+		ServidorSimpleImplPerformance servidorSimple = new ServidorSimpleImplPerformance();
+
 		// execute tests
 
-		anuncioPerformance.obtenerTituloPerformanceTest();
-		anuncioPerformance.obtenerDuracionPerformanceTest();
-		anuncioPerformance.obtenerListaReproduccionPerformanceTest();
-		anuncioPerformance.buscarPerformanceTest();
+		anuncio.obtenerTituloPerformanceTest();
+		anuncio.obtenerDuracionPerformanceTest();
+		anuncio.obtenerListaReproduccionPerformanceTest();
+		anuncio.buscarPerformanceTest();
 
-		cancionPerformance.obtenerTituloPerformanceTest();
-		cancionPerformance.obtenerDuracionPerformanceTest();
-		cancionPerformance.obtenerListaReproduccionPerformanceTest();
-		cancionPerformance.buscarPerformanceTest();
-		
-		emisoraPerformance.obtenerTituloPerformanceTest();
-		emisoraPerformance.obtenerDuracionPerformanceTest();
-		emisoraPerformance.obtenerListaReproduccionPerformanceTest();
-		emisoraPerformance.buscarPerformanceTest();
-		emisoraPerformance.agregarPerformanceTest();
-		emisoraPerformance.eliminarPerformanceTest();
-		
+		cancion.obtenerTituloPerformanceTest();
+		cancion.obtenerDuracionPerformanceTest();
+		cancion.obtenerListaReproduccionPerformanceTest();
+		cancion.buscarPerformanceTest();
+
+		emisora.obtenerTituloPerformanceTest();
+		emisora.obtenerDuracionPerformanceTest();
+		emisora.obtenerListaReproduccionPerformanceTest();
+		emisora.buscarPerformanceTest();
+		emisora.agregarPerformanceTest();
+		emisora.eliminarPerformanceTest();
+
+		try {
+			servidorSimpleConRespaldo.buscarPerformanceTest();
+			servidorSimpleConRespaldo.buscarWithoutContentPerformanceTest();
+		} catch (BackupServerException e) {
+			e.printStackTrace();
+		}
+
+		servidorSimple.agregarPerformanceTest();
+		servidorSimple.eliminarPerformanceTest();
+		servidorSimple.buscarTokenInvalidoPerformanceTest();
+		servidorSimple.buscarTokenValidoMasDeDiezPerformanceTest();
+		servidorSimple.buscarTokenValidoPerformanceTest();
+
 		// visualize results
 		monitor.render(new SimpleTextRenderer());
 
