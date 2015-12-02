@@ -20,10 +20,11 @@ import contenido.Emisora;
 public class EmisoraTest {
 
 	/** Generador de nombres válidos. */
-	GeneralNameGenerator cNameGen = new GeneralNameGenerator();
+	private final GeneralNameGenerator cNameGen = new GeneralNameGenerator();
 
 	/** Generador de duraciones válidas. */
-	ContenidoDuracionGenerator cDuracionGen = new ContenidoDuracionGenerator();
+	private final ContenidoDuracionGenerator cDuracionGen =
+			new ContenidoDuracionGenerator();
 
 	/** La emisora. */
 
@@ -31,7 +32,7 @@ public class EmisoraTest {
 	 * Obtener titulo test.
 	 */
 	@Test
-	public void obtenerTituloTest() {
+	public final void obtenerTituloTest() {
 		String nombre = cNameGen.next();
 		Emisora emisora = new Emisora(nombre);
 
@@ -42,7 +43,7 @@ public class EmisoraTest {
 	 * Obtener duracion test.
 	 */
 	@Test
-	public void obtenerDuracionTest() {
+	public final void obtenerDuracionTest() {
 		String nombreEmisora = cNameGen.next();
 		Emisora emisora = new Emisora(nombreEmisora);
 
@@ -51,14 +52,15 @@ public class EmisoraTest {
 		Cancion cancion = new Cancion(nombreCancion, duracionCancion);
 
 		emisora.agregar(cancion, emisora);
-		assertTrue(Integer.compare(emisora.obtenerDuracion(), duracionCancion) == 0);
+		assertTrue(Integer.compare(emisora.obtenerDuracion(),
+				duracionCancion) == 0);
 	}
 
 	/**
 	 * Obtener lista reproduccion test.
 	 */
 	@Test
-	public void obtenerListaReproduccionTest() {
+	public final void obtenerListaReproduccionTest() {
 		String nombreEmisora = cNameGen.next();
 		Emisora emisora = new Emisora(nombreEmisora);
 
@@ -78,13 +80,14 @@ public class EmisoraTest {
 	 * Buscar test.
 	 */
 	@Test
-	public void buscarTest() {
+	public final void buscarTest() {
 		String nombreEmisora = cNameGen.next();
 		Emisora emisora = new Emisora(nombreEmisora);
 
 		List<Contenido> listaReproduccionIdeal = new ArrayList<Contenido>();
 		listaReproduccionIdeal.add(emisora);
-		assertTrue(emisora.buscar(nombreEmisora).equals(listaReproduccionIdeal));
+		assertTrue(emisora.buscar(nombreEmisora)
+				.equals(listaReproduccionIdeal));
 
 		listaReproduccionIdeal = new ArrayList<Contenido>();
 		assertTrue(emisora.buscar(cNameGen.next()).equals(
@@ -95,7 +98,7 @@ public class EmisoraTest {
 	 * Agregar test.
 	 */
 	@Test
-	public void agregarTest() {
+	public final void agregarTest() {
 		String nombreEmisora = cNameGen.next();
 		Emisora emisora = new Emisora(nombreEmisora);
 
@@ -124,7 +127,7 @@ public class EmisoraTest {
 	 * Eliminar test.
 	 */
 	@Test
-	public void eliminarTest() {
+	public final void eliminarTest() {
 		String nombreEmisora = cNameGen.next();
 		Emisora emisora = new Emisora(nombreEmisora);
 

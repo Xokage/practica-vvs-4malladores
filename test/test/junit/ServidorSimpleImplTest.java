@@ -1,6 +1,6 @@
 package test.junit;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
@@ -20,19 +20,21 @@ import test.generators.ServidorTokenGenerator;
 public class ServidorSimpleImplTest {
 
 	/** Generador de nombres válidos. */
-	GeneralNameGenerator gNameGen = new GeneralNameGenerator();
+	private final GeneralNameGenerator gNameGen = new GeneralNameGenerator();
 
 	/** Generador de duraciones válidas. */
-	ContenidoDuracionGenerator cDuracionGen = new ContenidoDuracionGenerator();
+	private final ContenidoDuracionGenerator cDuracionGen = 
+			new ContenidoDuracionGenerator();
 
 	/** Generador de tokens válidos. */
-	ServidorTokenGenerator sTokenGen = new ServidorTokenGenerator();
+	private final ServidorTokenGenerator sTokenGen = 
+			new ServidorTokenGenerator();
 
 	/**
 	 * Obtener nombre test.
 	 */
 	@Test
-	public void obtenerNombreTest() {
+	public final void obtenerNombreTest() {
 		String nombre = gNameGen.next();
 		Servidor s = new ServidorSimpleImp(nombre, null, "", "");
 		assertEquals(s.obtenerNombre(), nombre);
@@ -42,7 +44,7 @@ public class ServidorSimpleImplTest {
 	 * Agregar test.
 	 */
 	@Test
-	public void agregarTest() {
+	public final void agregarTest() {
 		String nombre = gNameGen.next();
 		String passwd = sTokenGen.next().getLeft();
 		String token = sTokenGen.next().getLeft();
@@ -63,7 +65,7 @@ public class ServidorSimpleImplTest {
 	 * Eliminar test.
 	 */
 	@Test
-	public void eliminarTest() {
+	public final void eliminarTest() {
 		String nombre = gNameGen.next();
 		String passwd = sTokenGen.next().getLeft();
 		String token = sTokenGen.next().getLeft();
@@ -90,7 +92,7 @@ public class ServidorSimpleImplTest {
 	 * Buscar token invalido test.
 	 */
 	@Test
-	public void buscarTokenInvalidoTest() {
+	public final void buscarTokenInvalidoTest() {
 		String nombre = gNameGen.next();
 		String passwd = sTokenGen.next().getLeft();
 		String token = sTokenGen.next().getLeft();
@@ -120,7 +122,7 @@ public class ServidorSimpleImplTest {
 	 * Buscar con token válido test.
 	 */
 	@Test
-	public void buscarTokenValidoTest() {
+	public final void buscarTokenValidoTest() {
 		String nombre = gNameGen.next();
 		String passwd = sTokenGen.next().getLeft();
 		String token = sTokenGen.next().getLeft();
@@ -146,7 +148,11 @@ public class ServidorSimpleImplTest {
 	 * Buscar con token valido más de diez elementos test.
 	 */
 	@Test
-	public void buscarTokenValidoMasDeDiezTest() {
+	public final void buscarTokenValidoMasDeDiezTest() {
+
+		final int nItAgr = 15;
+		final int nItBus = 10;
+
 		String nombre = gNameGen.next();
 		String passwd = sTokenGen.next().getLeft();
 		String token = sTokenGen.next().getLeft();
@@ -157,13 +163,14 @@ public class ServidorSimpleImplTest {
 
 		Contenido cancion = new Cancion(titulo, duracion);
 
-		for (int j = 0; j <= 15; j++)
+		for (int j = 0; j <= nItAgr; j++) {
 			s.agregar(cancion, passwd);
+		}
 		List<Contenido> result = s.buscar(titulo, token);
 		int i;
-		for (i = 0; i < 10; i++)
+		for (i = 0; i < nItBus; i++) {
 			assertEquals(titulo, result.get(i).obtenerTitulo());
-
+		}
 		assertEquals("PUBLICIDAD", result.get(i++).obtenerTitulo());
 		assertEquals(titulo, result.get(i++).obtenerTitulo());
 		assertEquals(titulo, result.get(i++).obtenerTitulo());

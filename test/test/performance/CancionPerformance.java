@@ -19,24 +19,25 @@ import etm.core.monitor.EtmPoint;
 public class CancionPerformance {
 
 	/** Generador de nombres válidos. */
-	GeneralNameGenerator cNameGen = new GeneralNameGenerator();
+	private final GeneralNameGenerator cNameGen = new GeneralNameGenerator();
 
 	/** Generador de duraciones válidas. */
-	ContenidoDuracionGenerator cDuracionGen = new ContenidoDuracionGenerator();
+	private final ContenidoDuracionGenerator cDuracionGen = 
+			new ContenidoDuracionGenerator();
 
-	/** Number of iteratios to check performance */
-	private final Integer IT_NUMBER = 10000;
+	/** Number of iteratios to check performance. */
+	private final Integer itNumber = 10000;
 
-	/** JETM Monitor to check performance */
+	/** JETM Monitor to check performance. */
 	private final EtmMonitor etmMonitor = EtmManager.getEtmMonitor();
 
 	/**
 	 * Obtener titulo test.
 	 */
 	@Test
-	public void obtenerTituloPerformanceTest() {
+	public final void obtenerTituloPerformanceTest() {
 		List<Cancion> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			String nombre = cNameGen.next();
 			Integer duracion = cDuracionGen.next();
 			Cancion cancion = new Cancion(nombre, duracion);
@@ -58,9 +59,9 @@ public class CancionPerformance {
 	 * Obtener duracion test.
 	 */
 	@Test
-	public void obtenerDuracionPerformanceTest() {
+	public final void obtenerDuracionPerformanceTest() {
 		List<Cancion> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			String nombre = cNameGen.next();
 			Integer duracion = cDuracionGen.next();
 			Cancion cancion = new Cancion(nombre, duracion);
@@ -82,9 +83,9 @@ public class CancionPerformance {
 	 * Obtener lista reproduccion test.
 	 */
 	@Test
-	public void obtenerListaReproduccionPerformanceTest() {
+	public final void obtenerListaReproduccionPerformanceTest() {
 		List<Cancion> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			String nombre = cNameGen.next();
 			Integer duracion = cDuracionGen.next();
 			Cancion cancion = new Cancion(nombre, duracion);
@@ -106,9 +107,9 @@ public class CancionPerformance {
 	 * Buscar test.
 	 */
 	@Test
-	public void buscarPerformanceTest() {
+	public final void buscarPerformanceTest() {
 		List<Pair<Cancion, String>> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			String nombre = cNameGen.next();
 			Integer duracion = cDuracionGen.next();
 			Cancion cancion = new Cancion(nombre, duracion);

@@ -23,18 +23,21 @@ import etm.core.monitor.EtmPoint;
 public class ServidorSimpleConRespaldoImpPerformance {
 
 	/** Generador de nombres válidos. */
-	GeneralNameGenerator gNameGen = new GeneralNameGenerator();
+	private final GeneralNameGenerator gNameGen = 
+			new GeneralNameGenerator();
 
 	/** Generador de duraciones válidas. */
-	ContenidoDuracionGenerator cDuracionGen = new ContenidoDuracionGenerator();
+	private final ContenidoDuracionGenerator cDuracionGen = 
+			new ContenidoDuracionGenerator();
 
 	/** Generador de duraciones válidas. */
-	ServidorTokenGenerator sTokenGen = new ServidorTokenGenerator();
+	private final ServidorTokenGenerator sTokenGen = 
+			new ServidorTokenGenerator();
 
-	/** Number of iteratios to check performance */
-	private final Integer IT_NUMBER = 10000;
+	/** Number of iteratios to check performance. */
+	private final Integer itNumber = 10000;
 
-	/** JETM Monitor to check performance */
+	/** JETM Monitor to check performance. */
 	private final EtmMonitor etmMonitor = EtmManager.getEtmMonitor();
 
 	/**
@@ -43,17 +46,18 @@ public class ServidorSimpleConRespaldoImpPerformance {
 	 * @throws BackupServerException
 	 *             la excepción BackupServerException
 	 */
-	public void buscarPerformanceTest() throws BackupServerException {
-		List<Pair<Servidor, Pair<String, String>>> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+	public final void buscarPerformanceTest() throws BackupServerException {
+		List<Pair<Servidor, Pair<String, String>>> testElements = 
+				new ArrayList<>();
+		for (int i = 0; i < itNumber; i++) {
 			String nombre = gNameGen.next();
 			String passwd = gNameGen.next();
 			String tokenValido = sTokenGen.next().getLeft();
 
-			Servidor servidor_respaldo = new ServidorSimpleImp(nombre, null,
+			Servidor servidorRespaldo = new ServidorSimpleImp(nombre, null,
 					passwd, tokenValido);
 			ServidorSimpleConRespaldoImp s1 = new ServidorSimpleConRespaldoImp(
-					nombre, null, passwd, tokenValido, servidor_respaldo);
+					nombre, null, passwd, tokenValido, servidorRespaldo);
 
 			String titulo = gNameGen.next();
 			String titulo1 = gNameGen.next();
@@ -67,10 +71,10 @@ public class ServidorSimpleConRespaldoImpPerformance {
 			Contenido cancion1 = new Cancion(titulo1, duracion1);
 			Contenido cancion2 = new Cancion(titulo2, duracion2);
 
-			servidor_respaldo.agregar(cancion, passwd);
-			servidor_respaldo.agregar(cancion1, passwd);
-			servidor_respaldo.agregar(cancion2, passwd);
-			servidor_respaldo.agregar(cancion2, passwd);
+			servidorRespaldo.agregar(cancion, passwd);
+			servidorRespaldo.agregar(cancion1, passwd);
+			servidorRespaldo.agregar(cancion2, passwd);
+			servidorRespaldo.agregar(cancion2, passwd);
 
 			testElements.add(new Pair<>(s1, new Pair<>(titulo, tokenValido)));
 		}
@@ -92,18 +96,18 @@ public class ServidorSimpleConRespaldoImpPerformance {
 	 * @throws BackupServerException
 	 *             la excepción BackupServerException
 	 */
-	public void buscarWithoutContentPerformanceTest()
+	public final void buscarWithoutContentPerformanceTest()
 			throws BackupServerException {
 		List<Pair<Servidor, String>> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			String nombre = gNameGen.next();
 			String passwd = gNameGen.next();
 			String tokenValido = sTokenGen.next().getLeft();
 
-			Servidor servidor_respaldo = new ServidorSimpleImp(nombre, null,
+			Servidor servidorRespaldo = new ServidorSimpleImp(nombre, null,
 					passwd, tokenValido);
 			ServidorSimpleConRespaldoImp s1 = new ServidorSimpleConRespaldoImp(
-					nombre, null, passwd, tokenValido, servidor_respaldo);
+					nombre, null, passwd, tokenValido, servidorRespaldo);
 
 			testElements.add(new Pair<>(s1, tokenValido));
 		}

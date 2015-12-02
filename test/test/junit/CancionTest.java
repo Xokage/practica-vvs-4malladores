@@ -1,6 +1,6 @@
 package test.junit;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,16 +18,17 @@ import contenido.Contenido;
 public class CancionTest {
 
 	/** Generador de nombres válidos. */
-	GeneralNameGenerator cNameGen = new GeneralNameGenerator();
+	private final GeneralNameGenerator cNameGen = new GeneralNameGenerator();
 
 	/** Generador de duraciones válidas. */
-	ContenidoDuracionGenerator cDuracionGen = new ContenidoDuracionGenerator();
+	private final ContenidoDuracionGenerator cDuracionGen =
+			new ContenidoDuracionGenerator();
 
 	/**
 	 * Obtener titulo test.
 	 */
 	@Test
-	public void obtenerTituloTest() {
+	public final void obtenerTituloTest() {
 		String nombre = cNameGen.next();
 		Integer duracion = cDuracionGen.next();
 		Cancion cancion = new Cancion(nombre, duracion);
@@ -39,7 +40,7 @@ public class CancionTest {
 	 * Obtener duracion test.
 	 */
 	@Test
-	public void obtenerDuracionTest() {
+	public final void obtenerDuracionTest() {
 		String nombre = cNameGen.next();
 		Integer duracion = cDuracionGen.next();
 		Cancion cancion = new Cancion(nombre, duracion);
@@ -51,7 +52,7 @@ public class CancionTest {
 	 * Obtener lista reproduccion test.
 	 */
 	@Test
-	public void obtenerListaReproduccionTest() {
+	public final void obtenerListaReproduccionTest() {
 		String nombre = cNameGen.next();
 		Integer duracion = cDuracionGen.next();
 		Cancion cancion = new Cancion(nombre, duracion);
@@ -66,7 +67,7 @@ public class CancionTest {
 	 * Buscar test.
 	 */
 	@Test
-	public void buscarTest() {
+	public final void buscarTest() {
 		String nombre = cNameGen.next();
 		Integer duracion = cDuracionGen.next();
 		Cancion cancion = new Cancion(nombre, duracion);

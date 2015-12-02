@@ -9,13 +9,14 @@ import net.java.quickcheck.generator.PrimitiveGenerators;
 public class ContenidoDuracionGenerator implements Generator<Integer> {
 	
 	/** La duracion que se genera. Siempre positiva. */
-	Generator<Integer> duracion = PrimitiveGenerators.positiveIntegers();
+	private final Generator<Integer> duracion = 
+			PrimitiveGenerators.positiveIntegers();
 
 	/**
 	 * @see net.java.quickcheck.Generator#next()
 	 */
 	@Override
-	public Integer next() {
+	public final Integer next() {
 		return new Integer(duracion.next());
 	}
 }

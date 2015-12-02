@@ -9,13 +9,13 @@ import net.java.quickcheck.generator.PrimitiveGenerators;
 public class GeneralNameGenerator implements Generator<String> {
 	
 	/** El nombre que se genera. */
-	Generator<String> nome = PrimitiveGenerators.strings();
+	private final Generator<String> nome = PrimitiveGenerators.strings();
 
 	/**
 	 * @see net.java.quickcheck.Generator#next()
 	 */
 	@Override
-	public String next() {
+	public final String next() {
 		return new String(nome.next());
 	}
 }

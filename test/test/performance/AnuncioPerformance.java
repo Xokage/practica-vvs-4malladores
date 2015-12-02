@@ -15,22 +15,22 @@ import etm.core.monitor.EtmPoint;
 public class AnuncioPerformance {
 
 	/** Generador de nombres válidos. */
-	GeneralNameGenerator cNameGen = new GeneralNameGenerator();
+	private final GeneralNameGenerator cNameGen = new GeneralNameGenerator();
 
 	// Performance Variables
 
-	/** Number of iteratios to check performance */
-	private final Integer IT_NUMBER = 10000;
+	/** Number of iteratios to check performance. */
+	private final Integer itNumber = 10000;
 
-	/** JETM Monitor to check performance */
+	/** JETM Monitor to check performance. */
 	private final EtmMonitor etmMonitor = EtmManager.getEtmMonitor();
 
 	/**
 	 * Obtener titulo test.
 	 */
-	public void obtenerTituloPerformanceTest() {
+	public final void obtenerTituloPerformanceTest() {
 		List<Anuncio> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			testElements.add(new Anuncio());
 		}
 
@@ -47,9 +47,9 @@ public class AnuncioPerformance {
 	/**
 	 * Obtener duracion test.
 	 */
-	public void obtenerDuracionPerformanceTest() {
+	public final void obtenerDuracionPerformanceTest() {
 		List<Anuncio> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			testElements.add(new Anuncio());
 		}
 
@@ -66,9 +66,9 @@ public class AnuncioPerformance {
 	/**
 	 * Obtener lista reproduccion test.
 	 */
-	public void obtenerListaReproduccionPerformanceTest() {
+	public final void obtenerListaReproduccionPerformanceTest() {
 		List<Anuncio> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			Anuncio anuncio = new Anuncio();
 			testElements.add(anuncio);
 		}
@@ -86,9 +86,9 @@ public class AnuncioPerformance {
 	/**
 	 * Buscar test.
 	 */
-	public void buscarPerformanceTest() {
+	public final void buscarPerformanceTest() {
 		List<Anuncio> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			Anuncio anuncio = new Anuncio();
 			testElements.add(anuncio);
 		}

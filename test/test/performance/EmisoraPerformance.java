@@ -19,23 +19,24 @@ import etm.core.monitor.EtmPoint;
 public class EmisoraPerformance {
 
 	/** Generador de nombres válidos. */
-	GeneralNameGenerator cNameGen = new GeneralNameGenerator();
+	private final GeneralNameGenerator cNameGen = new GeneralNameGenerator();
 
 	/** Generador de duraciones válidas. */
-	ContenidoDuracionGenerator cDuracionGen = new ContenidoDuracionGenerator();
+	private final ContenidoDuracionGenerator cDuracionGen = 
+			new ContenidoDuracionGenerator();
 
-	/** Number of iteratios to check performance */
-	private final Integer IT_NUMBER = 10000;
+	/** Number of iteratios to check performance. */
+	private final Integer itNumber = 10000;
 
-	/** JETM Monitor to check performance */
+	/** JETM Monitor to check performance. */
 	private final EtmMonitor etmMonitor = EtmManager.getEtmMonitor();
 
 	/**
 	 * Obtener titulo test.
 	 */
-	public void obtenerTituloPerformanceTest() {
+	public final void obtenerTituloPerformanceTest() {
 		List<Emisora> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			String nombre = cNameGen.next();
 			Emisora emisora = new Emisora(nombre);
 
@@ -55,9 +56,9 @@ public class EmisoraPerformance {
 	/**
 	 * Obtener duracion test.
 	 */
-	public void obtenerDuracionPerformanceTest() {
+	public final void obtenerDuracionPerformanceTest() {
 		List<Emisora> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			String nombreEmisora = cNameGen.next();
 			Emisora emisora = new Emisora(nombreEmisora);
 
@@ -83,9 +84,9 @@ public class EmisoraPerformance {
 	/**
 	 * Obtener lista reproduccion test.
 	 */
-	public void obtenerListaReproduccionPerformanceTest() {
+	public final void obtenerListaReproduccionPerformanceTest() {
 		List<Emisora> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			String nombreEmisora = cNameGen.next();
 			Emisora emisora = new Emisora(nombreEmisora);
 
@@ -110,9 +111,9 @@ public class EmisoraPerformance {
 	/**
 	 * Buscar test.
 	 */
-	public void buscarPerformanceTest() {
+	public final void buscarPerformanceTest() {
 		List<Pair<Emisora, String>> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			String nombreEmisora = cNameGen.next();
 			Emisora emisora = new Emisora(nombreEmisora);
 
@@ -135,9 +136,9 @@ public class EmisoraPerformance {
 	/**
 	 * Agregar test.
 	 */
-	public void agregarPerformanceTest() {
+	public final void agregarPerformanceTest() {
 		List<Pair<Emisora, Cancion>> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			String nombreEmisora = cNameGen.next();
 			Emisora emisora = new Emisora(nombreEmisora);
 
@@ -160,9 +161,9 @@ public class EmisoraPerformance {
 	/**
 	 * Eliminar test.
 	 */
-	public void eliminarPerformanceTest() {
+	public final void eliminarPerformanceTest() {
 		List<Pair<Emisora, Cancion>> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			String nombreEmisora = cNameGen.next();
 			Emisora emisora = new Emisora(nombreEmisora);
 

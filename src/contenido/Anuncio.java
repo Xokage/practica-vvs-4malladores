@@ -9,31 +9,34 @@ import java.util.List;
  * @author Cristian Canosa, Martín Quinteiro
  */
 public class Anuncio implements Contenido {
-	
-	/** Título. En un anuncio su título es siempre "PUBLICIDAD"*/
+
+	/** Título. En un anuncio su título es siempre "PUBLICIDAD" */
 	private String titulo;
-	
+
 	/** Duración. Los anuncios duran siempre 5 segundos. */
 	private int duracion;
+
+	/** Constante do que dura un anuncio. */
+	private final int duracionAnuncio = 5;
 	
 	/** Lista de Reproduccion de Contenido. */
 	private List<Contenido> listaReproduccion;
-	
+
 	/**
 	 * Instancia un nuevo anuncio que dura 5 segundos y de título 'PUBLICIDAD'.
 	 */
-	public Anuncio(){
+	public Anuncio() {
 		titulo = "PUBLICIDAD";
-		duracion = 5;
+		duracion = duracionAnuncio;
 		listaReproduccion = new ArrayList<Contenido>();
 		listaReproduccion.add(this);
 	}
-	
+
 	/**
 	 * @see contenido.Contenido#obtenerTitulo()
 	 */
 	@Override
-	public String obtenerTitulo() {
+	public final String obtenerTitulo() {
 		return titulo;
 	}
 
@@ -41,7 +44,7 @@ public class Anuncio implements Contenido {
 	 * @see contenido.Contenido#obtenerDuracion()
 	 */
 	@Override
-	public Integer obtenerDuracion() {
+	public final Integer obtenerDuracion() {
 		return duracion;
 	}
 
@@ -49,7 +52,7 @@ public class Anuncio implements Contenido {
 	 * @see contenido.Contenido#obtenerListaReproduccion()
 	 */
 	@Override
-	public List<Contenido> obtenerListaReproduccion() {
+	public final List<Contenido> obtenerListaReproduccion() {
 		return listaReproduccion;
 	}
 
@@ -57,25 +60,27 @@ public class Anuncio implements Contenido {
 	 * @see contenido.Contenido#buscar(java.lang.String)
 	 */
 	@Override
-	public List<Contenido> buscar(String subcadena) {
-		if (titulo.contains(subcadena))
+	public final List<Contenido> buscar(final String subcadena) {
+		if (titulo.contains(subcadena)) {
 			return listaReproduccion;
-		else return new ArrayList<Contenido>();
+		} else {
+			return new ArrayList<Contenido>();
+		}
 	}
 
 	/**
 	 * No realiza ninguna función.
 	 */
 	@Override
-	public void agregar(Contenido contenido, Contenido predecesor) {
-		
+	public void agregar(final Contenido contenido, final Contenido predecesor) {
+
 	}
 
 	/**
 	 * No realiza ninguna función.
 	 */
 	@Override
-	public void eliminar(Contenido contenido) {
-		
+	public void eliminar(final Contenido contenido) {
+
 	}
 }

@@ -1,6 +1,6 @@
 package test.junit;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +17,16 @@ import contenido.Contenido;
 public class AnuncioTest {
 
 	/** Generador de nombres válidos. */
-	GeneralNameGenerator cNameGen = new GeneralNameGenerator();
+	private final GeneralNameGenerator cNameGen = new GeneralNameGenerator();
+
+	/** Constante do que dura un anuncio. */
+	private final int duracionAnuncio = 5;
 
 	/**
 	 * Obtener titulo test.
 	 */
 	@Test
-	public void obtenerTituloTest() {
+	public final void obtenerTituloTest() {
 		Anuncio anuncio = new Anuncio();
 
 		assertTrue(anuncio.obtenerTitulo().equals("PUBLICIDAD"));
@@ -33,17 +36,18 @@ public class AnuncioTest {
 	 * Obtener duracion test.
 	 */
 	@Test
-	public void obtenerDuracionTest() {
+	public final void obtenerDuracionTest() {
 		Anuncio anuncio = new Anuncio();
 
-		assertTrue(Integer.compare(anuncio.obtenerDuracion(), 5) == 0);
+		assertTrue(Integer.compare(anuncio.obtenerDuracion(),
+				duracionAnuncio) == 0);
 	}
 
 	/**
 	 * Obtener lista reproduccion test.
 	 */
 	@Test
-	public void obtenerListaReproduccionTest() {
+	public final void obtenerListaReproduccionTest() {
 		Anuncio anuncio = new Anuncio();
 
 		List<Contenido> listaReproduccionIdeal = new ArrayList<Contenido>();
@@ -56,7 +60,7 @@ public class AnuncioTest {
 	 * Buscar test.
 	 */
 	@Test
-	public void buscarTest() {
+	public final void buscarTest() {
 		Anuncio anuncio = new Anuncio();
 
 		List<Contenido> listaReproduccionIdeal = new ArrayList<Contenido>();

@@ -24,26 +24,28 @@ import util.Pair;
 public class ServidorSimpleImplPerformance {
 
 	/** Generador de nombres válidos. */
-	GeneralNameGenerator gNameGen = new GeneralNameGenerator();
+	private final GeneralNameGenerator gNameGen = new GeneralNameGenerator();
 
 	/** Generador de duraciones válidas. */
-	ContenidoDuracionGenerator cDuracionGen = new ContenidoDuracionGenerator();
+	private final ContenidoDuracionGenerator cDuracionGen = 
+			new ContenidoDuracionGenerator();
 
 	/** Generador de duraciones válidas. */
-	ServidorTokenGenerator sTokenGen = new ServidorTokenGenerator();
+	private final ServidorTokenGenerator sTokenGen = 
+			new ServidorTokenGenerator();
 
-	/** Number of iteratios to check performance */
-	private final Integer IT_NUMBER = 10000;
+	/** Number of iteratios to check performance. */
+	private final Integer itNumber = 10000;
 
-	/** JETM Monitor to check performance */
+	/** JETM Monitor to check performance. */
 	private final EtmMonitor etmMonitor = EtmManager.getEtmMonitor();
 
 	/**
 	 * Obtener nombre test.
 	 */
-	public void obtenerNombrePerformanceTest() {
+	public final void obtenerNombrePerformanceTest() {
 		List<Servidor> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			String nombre = gNameGen.next();
 			Servidor s = new ServidorSimpleImp(nombre, null, "", "");
 			testElements.add(s);
@@ -62,9 +64,9 @@ public class ServidorSimpleImplPerformance {
 	 * Agregar test.
 	 */
 	@Test
-	public void agregarPerformanceTest() {
+	public final void agregarPerformanceTest() {
 		List<Pair<Emisora, Cancion>> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			String nombreEmisora = gNameGen.next();
 			Emisora emisora = new Emisora(nombreEmisora);
 
@@ -88,13 +90,12 @@ public class ServidorSimpleImplPerformance {
 	 * Eliminar test.
 	 */
 	@Test
-	public void eliminarPerformanceTest() {
+	public final void eliminarPerformanceTest() {
 		List<Pair<Emisora, Cancion>> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+		for (int i = 0; i < itNumber; i++) {
 			String nombre = gNameGen.next();
 			String passwd = sTokenGen.next().getLeft();
 			String token = sTokenGen.next().getLeft();
-			;
 			Servidor s = new ServidorSimpleImp(nombre, null, passwd, token);
 			String titulo = gNameGen.next();
 			Integer duracion = cDuracionGen.next();
@@ -118,9 +119,10 @@ public class ServidorSimpleImplPerformance {
 	 * Buscar token invalido test.
 	 */
 	@Test
-	public void buscarTokenInvalidoPerformanceTest() {
-		List<Pair<Servidor, Pair<String, String>>> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+	public final void buscarTokenInvalidoPerformanceTest() {
+		List<Pair<Servidor, Pair<String, String>>> testElements = 
+				new ArrayList<>();
+		for (int i = 0; i < itNumber; i++) {
 			String nombre = gNameGen.next();
 			String passwd = gNameGen.next();
 			String tokenValido = sTokenGen.next().getLeft();
@@ -164,9 +166,10 @@ public class ServidorSimpleImplPerformance {
 	 * Buscar con token válido test.
 	 */
 	@Test
-	public void buscarTokenValidoPerformanceTest() {
-		List<Pair<Servidor, Pair<String, String>>> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+	public final void buscarTokenValidoPerformanceTest() {
+		List<Pair<Servidor, Pair<String, String>>> testElements = 
+				new ArrayList<>();
+		for (int i = 0; i < itNumber; i++) {
 			String nombre = gNameGen.next();
 			String passwd = gNameGen.next();
 			String tokenValido = sTokenGen.next().getLeft();
@@ -210,9 +213,11 @@ public class ServidorSimpleImplPerformance {
 	 * Buscar con token valido más de diez elementos test.
 	 */
 	@Test
-	public void buscarTokenValidoMasDeDiezPerformanceTest() {
-		List<Pair<Servidor, Pair<String, String>>> testElements = new ArrayList<>();
-		for (int i = 0; i < IT_NUMBER; i++) {
+	public final void buscarTokenValidoMasDeDiezPerformanceTest() {
+		final int nIt = 15;
+		List<Pair<Servidor, Pair<String, String>>> testElements = 
+				new ArrayList<>();
+		for (int i = 0; i < itNumber; i++) {
 			String nombre = gNameGen.next();
 			String passwd = gNameGen.next();
 			String tokenValido = sTokenGen.next().getLeft();
@@ -232,7 +237,7 @@ public class ServidorSimpleImplPerformance {
 			Contenido cancion1 = new Cancion(titulo1, duracion1);
 			Contenido cancion2 = new Cancion(titulo2, duracion2);
 
-			for (int j = 0; j <= 15; j++) {
+			for (int j = 0; j <= nIt; j++) {
 				servidor.agregar(cancion, passwd);
 				servidor.agregar(cancion1, passwd);
 				servidor.agregar(cancion2, passwd);
@@ -242,7 +247,8 @@ public class ServidorSimpleImplPerformance {
 		}
 
 		EtmPoint point = etmMonitor
-				.createPoint("ServidorSimple:buscarTokenValidoMasDeDiezElementos");
+				.createPoint("ServidorSimple:buscarToken"
+						+ "ValidoMasDeDiezElementos");
 
 		for (Pair<Servidor, Pair<String, String>> pair : testElements) {
 			pair.getLeft().buscar(pair.getRight().getLeft(),

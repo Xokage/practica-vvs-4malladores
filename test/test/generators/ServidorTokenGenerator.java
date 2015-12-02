@@ -5,28 +5,43 @@ import java.util.Random;
 import net.java.quickcheck.Generator;
 import util.Pair;
 
-public class ServidorTokenGenerator implements Generator<Pair<String,Integer>> {
+/**
+ * 
+ * @author Urist
+ *
+ *         Genera un token para las pruebas de servidores.
+ */
+public class ServidorTokenGenerator implements 
+	Generator<Pair<String, Integer>> {
 
 	/** El numero de letras del token. */
-	private final int LENGHT_OF_TOKEN = 10;
+	private final int lengthOfToken = 10;
 
 	/** El numero de intentos del token. */
-	private final int TRIES_PER_TOKEN = 10;
+	private final int triesPerToken = 10;
 
 	/**
 	 * @see net.java.quickcheck.Generator#next()
 	 */
 	@Override
-	public Pair<String,Integer> next() {
-		return getToken(LENGHT_OF_TOKEN);
+	public final Pair<String, Integer> next() {
+		return getToken(lengthOfToken);
 	}
 
-	private Pair<String, Integer> getToken(int chars) {
-		String CharSet = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!@#$";
-		String Token = "";
+	/**
+	 * Devuelve un token aleatorio.
+	 * 
+	 * @param chars
+	 *            numero de caracteres del token.
+	 * @return par (token, numero de intentos).
+	 */
+	private Pair<String, Integer> getToken(final int chars) {
+		String charSet = "abcdefghijkmnopqrstuvwxyz"
+				+ "ABCDEFGHJKLMNOPQRSTUVWXYZ234567890!@#$";
+		String token = "";
 		for (int a = 1; a <= chars; a++) {
-			Token += CharSet.charAt(new Random().nextInt(CharSet.length()));
+			token += charSet.charAt(new Random().nextInt(charSet.length()));
 		}
-		return new Pair<String, Integer>(Token, TRIES_PER_TOKEN);
+		return new Pair<String, Integer>(token, triesPerToken);
 	}
 }
