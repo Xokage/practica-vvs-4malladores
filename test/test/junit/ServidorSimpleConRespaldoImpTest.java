@@ -85,7 +85,6 @@ public class ServidorSimpleConRespaldoImpTest {
 		servidorRespaldo.agregar(cancion, passwd);
 		servidorRespaldo.agregar(cancion1, passwd);
 		servidorRespaldo.agregar(cancion2, passwd);
-		servidorRespaldo.agregar(cancion2, passwd);
 		
 		List<Contenido> result = s1.buscar(titulo, tokenValido);
 
