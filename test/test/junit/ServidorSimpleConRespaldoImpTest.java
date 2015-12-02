@@ -97,8 +97,6 @@ public class ServidorSimpleConRespaldoImpTest {
 		result = s1.buscar(titulo2, tokenValido);
 		
 		assertEquals(result.get(0).obtenerTitulo(), titulo2);
-		
-		assertEquals(result.get(1).obtenerTitulo(), titulo2);
 	}
 	
 	/**
