@@ -10,6 +10,7 @@ import org.junit.Test;
 import contenido.Anuncio;
 import contenido.Contenido;
 
+
 /**
  * Tests de la clase Anuncio.
  */
