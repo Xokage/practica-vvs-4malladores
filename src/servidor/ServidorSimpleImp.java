@@ -71,8 +71,9 @@ public class ServidorSimpleImp implements Servidor {
 		}
 		this.tokenMaestro = tokenContenido;
 		this.tokensValidos = new ArrayList<>();
-		this.tokensValidos.add(new Pair<String, Integer>(tokenValido,
-				triesPerToken));
+		if (tokenValido!=null){
+			this.tokensValidos.add(new Pair<String, Integer>(tokenValido, triesPerToken));
+		}
 	}
 
 	/**
@@ -92,8 +93,9 @@ public class ServidorSimpleImp implements Servidor {
 
 		this.tokenMaestro = tokenContenidoRecibido;
 		this.tokensValidos = new ArrayList<>();
-		this.tokensValidos.add(new Pair<String, Integer>(tokenValido,
-				triesPerToken));
+		if (tokenValido!=null){
+			this.tokensValidos.add(new Pair<String, Integer>(tokenValido, triesPerToken));
+		}
 	}
 
 	/**
@@ -141,17 +143,54 @@ public class ServidorSimpleImp implements Servidor {
 
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public List<Contenido> getContenidoList() {
+		return contenidoList;
+	}
+
+	public void setContenidoList(List<Contenido> contenidoList) {
+		this.contenidoList = contenidoList;
+	}
+
+	public String getTokenMaestro() {
+		return tokenMaestro;
+	}
+
+	public void setTokenMaestro(String tokenMaestro) {
+		this.tokenMaestro = tokenMaestro;
+	}
+
+	public List<Pair<String, Integer>> getTokensValidos() {
+		return tokensValidos;
+	}
+
+	public void setTokensValidos(List<Pair<String, Integer>> tokensValidos) {
+		this.tokensValidos = tokensValidos;
+	}
+
+	public int getTRIES_PER_TOKEN() {
+		return TRIES_PER_TOKEN;
+	}
+
 	/**
 	 * @see servidor.Servidor#baja(java.lang.String)
 	 */
 	@Override
-	public final void baja(final String token) {
-
+	public void baja(String token) {
+		int index=0;
 		for (Pair<String, Integer> par : this.tokensValidos) {
-			if (par.getLeft().equals(token)) {
-
-				this.tokensValidos.remove(par);
+			if (par.getLeft().equals(token)){
+				tokensValidos.remove(index);
+				return;
 			}
+			index++;
 		}
 	}
 
