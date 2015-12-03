@@ -47,7 +47,7 @@ public class ServidorSimpleConRespaldoImpPerformance {
 	 *             la excepción BackupServerException
 	 */
 	public final void buscarPerformanceTest() throws BackupServerException {
-		List<Pair<Servidor, Pair<String, String>>> testElements = 
+		List<Pair<ServidorSimpleConRespaldoImp, Pair<String, String>>> testElements = 
 				new ArrayList<>();
 		for (int i = 0; i < itNumber; i++) {
 			String nombre = gNameGen.next();
@@ -82,7 +82,7 @@ public class ServidorSimpleConRespaldoImpPerformance {
 		EtmPoint point = etmMonitor
 				.createPoint("ServidorSimpleConRespaldo:buscar");
 
-		for (Pair<Servidor, Pair<String, String>> pair : testElements) {
+		for (Pair<ServidorSimpleConRespaldoImp, Pair<String, String>> pair : testElements) {
 			pair.getLeft().buscar(pair.getRight().getLeft(),
 					pair.getRight().getRight());
 		}
@@ -98,7 +98,7 @@ public class ServidorSimpleConRespaldoImpPerformance {
 	 */
 	public final void buscarWithoutContentPerformanceTest()
 			throws BackupServerException {
-		List<Pair<Servidor, String>> testElements = new ArrayList<>();
+		List<Pair<ServidorSimpleConRespaldoImp, String>> testElements = new ArrayList<>();
 		for (int i = 0; i < itNumber; i++) {
 			String nombre = gNameGen.next();
 			String passwd = gNameGen.next();
@@ -115,7 +115,7 @@ public class ServidorSimpleConRespaldoImpPerformance {
 		EtmPoint point = etmMonitor
 				.createPoint("ServidorSimpleConRespaldo:buscarVacio");
 
-		for (Pair<Servidor, String> pair : testElements) {
+		for (Pair<ServidorSimpleConRespaldoImp, String> pair : testElements) {
 			pair.getLeft().buscar(gNameGen.next(), pair.getRight());
 		}
 

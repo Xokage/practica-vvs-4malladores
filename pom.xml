@@ -87,6 +87,8 @@
 			<groupId>fm.void.jetm</groupId>
 			<artifactId>jetm-optional</artifactId>
 			<version>1.2.3</version>
+		</dependency>
+		<dependency>
 			<groupId>org.graphwalker</groupId>
 			<artifactId>graphwalker-core</artifactId>
 			<version>3.3.0</version>

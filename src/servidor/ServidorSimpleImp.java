@@ -176,7 +176,7 @@ public class ServidorSimpleImp implements Servidor {
 	}
 
 	public int getTRIES_PER_TOKEN() {
-		return TRIES_PER_TOKEN;
+		return triesPerToken;
 	}
 
 	/**
