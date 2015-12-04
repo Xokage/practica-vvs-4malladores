@@ -108,15 +108,14 @@ public class EmisoraTest {
 
 		Anuncio anuncio = new Anuncio();
 
-		emisora.agregar(cancion, emisora);
+		emisora.agregar(cancion, null);
 		List<Contenido> listaReproduccionIdeal = new ArrayList<Contenido>();
-		listaReproduccionIdeal.add(emisora);
 		listaReproduccionIdeal.add(cancion);
 
 		assertTrue(emisora.obtenerListaReproduccion().equals(
 				listaReproduccionIdeal));
 
-		emisora.agregar(anuncio, emisora);
+		emisora.agregar(anuncio, cancion);
 		listaReproduccionIdeal.add(1, anuncio);
 
 		assertTrue(emisora.obtenerListaReproduccion().equals(

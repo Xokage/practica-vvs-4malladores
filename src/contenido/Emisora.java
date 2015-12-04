@@ -27,7 +27,6 @@ public class Emisora implements Contenido {
 		this.titulo = tituloRecibido;
 		this.duracion = 0;
 		this.listaReproduccion = new ArrayList<Contenido>();
-		listaReproduccion.add(this);
 	}
 
 	/**
