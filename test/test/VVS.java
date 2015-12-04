@@ -9,49 +9,28 @@ import org.graphwalker.java.annotation.Edge;
 public interface VVS {
 
     @Vertex()
-    void Server_with_content();
-
-    @Edge()
-    void do_sign_up_with_server_with_content();
-
-    @Vertex()
-    void Server_with_valid_token();
-
-    @Edge()
-    void do_remove_content_with_server_with_one_content();
-
-    @Edge()
-    void do_sign_up();
-
-    @Vertex()
     void Ready();
+
+    @Vertex()
+    void Server_with_content();
 
     @Edge()
     void power_up_server();
 
     @Edge()
-    void do_sign_out_with_one_token();
-
-    @Edge()
     void do_search();
 
     @Edge()
-    void do_sign_out_with_more_than_one_token_and_content();
+    void do_sign_out();
 
-    @Edge()
-    void do_sign_out_with_more_than_one_token();
-
-    @Edge()
-    void do_remove_content_with_server_with_more_than_one_content();
-
-    @Edge()
-    void do_search_with_server_with_content();
+    @Vertex()
+    void Server_with_valid_token();
 
     @Edge()
     void do_remove_content();
 
     @Edge()
-    void do_add_content_with_server_with_content();
+    void do_sign_up();
 
     @Edge()
     void do_add_content();
