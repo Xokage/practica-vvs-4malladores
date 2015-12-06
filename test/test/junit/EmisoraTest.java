@@ -68,9 +68,8 @@ public class EmisoraTest {
 		Integer duracionCancion = cDuracionGen.next();
 		Cancion cancion = new Cancion(nombreCancion, duracionCancion);
 
-		emisora.agregar(cancion, emisora);
+		emisora.agregar(cancion, null);
 		List<Contenido> listaReproduccionIdeal = new ArrayList<Contenido>();
-		listaReproduccionIdeal.add(emisora);
 		listaReproduccionIdeal.add(cancion);
 		assertTrue(emisora.obtenerListaReproduccion().equals(
 				listaReproduccionIdeal));
@@ -84,9 +83,15 @@ public class EmisoraTest {
 		String nombreEmisora = cNameGen.next();
 		Emisora emisora = new Emisora(nombreEmisora);
 
+		String nombreCancion = cNameGen.next();
+		Integer duracionCancion = cDuracionGen.next();
+		Cancion cancion = new Cancion(nombreCancion, duracionCancion);
+
+		emisora.agregar(cancion, null);
+		
 		List<Contenido> listaReproduccionIdeal = new ArrayList<Contenido>();
-		listaReproduccionIdeal.add(emisora);
-		assertTrue(emisora.buscar(nombreEmisora)
+		listaReproduccionIdeal.add(cancion);
+		assertTrue(emisora.buscar(nombreCancion)
 				.equals(listaReproduccionIdeal));
 
 		listaReproduccionIdeal = new ArrayList<Contenido>();
@@ -134,9 +139,8 @@ public class EmisoraTest {
 		Integer duracionCancion = cDuracionGen.next();
 		Cancion cancion = new Cancion(nombreCancion, duracionCancion);
 
-		emisora.agregar(cancion, emisora);
+		emisora.agregar(cancion, null);
 		List<Contenido> listaReproduccionIdeal = new ArrayList<Contenido>();
-		listaReproduccionIdeal.add(emisora);
 		listaReproduccionIdeal.add(cancion);
 
 		assertTrue(emisora.obtenerListaReproduccion().equals(
@@ -144,7 +148,6 @@ public class EmisoraTest {
 
 		emisora.eliminar(cancion);
 		listaReproduccionIdeal = new ArrayList<Contenido>();
-		listaReproduccionIdeal.add(emisora);
 
 		assertTrue(emisora.obtenerListaReproduccion().equals(
 				listaReproduccionIdeal));

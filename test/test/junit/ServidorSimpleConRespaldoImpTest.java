@@ -66,9 +66,7 @@ public class ServidorSimpleConRespaldoImpTest {
 		
 		Servidor servidorRespaldo = new ServidorSimpleImp("ServidorSimple",
 				null, passwd, tokenValido);
-		ServidorSimpleConRespaldoImp s1 = new ServidorSimpleConRespaldoImp(
-				nombre, null,
-				passwd, tokenValido, servidorRespaldo);
+
 		
 		String titulo = gNameGen.next();
 		String titulo1 = gNameGen.next();
@@ -85,6 +83,10 @@ public class ServidorSimpleConRespaldoImpTest {
 		servidorRespaldo.agregar(cancion, passwd);
 		servidorRespaldo.agregar(cancion1, passwd);
 		servidorRespaldo.agregar(cancion2, passwd);
+		
+		ServidorSimpleConRespaldoImp s1 = new ServidorSimpleConRespaldoImp(
+				nombre, null,
+				passwd, tokenValido, servidorRespaldo);		
 		
 		List<Contenido> result = s1.buscar(titulo, tokenValido);
 
