@@ -98,7 +98,7 @@ public class ServidorSimpleConRespaldoImpMockTest {
 		List<Contenido> result = new ArrayList<>();
 		when (servidorSimpleConRespaldoImpMock.buscar(gNameGen.next(), tokenValido)).thenReturn(result);
 		List<Contenido> result1 = new ArrayList<Contenido>();
-		assertEquals(result, result1);
+		assertEquals(servidorSimpleConRespaldoImpMock.buscar(gNameGen.next(), tokenValido), result1);
 	}
 
 }

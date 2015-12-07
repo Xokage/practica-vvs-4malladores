@@ -95,7 +95,12 @@ public class EmisoraTest {
 				.equals(listaReproduccionIdeal));
 
 		listaReproduccionIdeal = new ArrayList<Contenido>();
-		assertTrue(emisora.buscar(cNameGen.next()).equals(
+		String tituloAleatorio = cNameGen.next();
+		
+		while (nombreEmisora.contains(tituloAleatorio) || nombreCancion.contains(tituloAleatorio)){
+			tituloAleatorio = cNameGen.next();
+		}
+		assertTrue(emisora.buscar(tituloAleatorio).equals(
 				listaReproduccionIdeal));
 	}
 

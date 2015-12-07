@@ -39,8 +39,7 @@ public class AnuncioTest {
 	public final void obtenerDuracionTest() {
 		Anuncio anuncio = new Anuncio();
 
-		assertTrue(Integer.compare(anuncio.obtenerDuracion(),
-				duracionAnuncio) == 0);
+		assertTrue(Integer.compare(anuncio.obtenerDuracion(), duracionAnuncio) == 0);
 	}
 
 	/**
@@ -63,12 +62,18 @@ public class AnuncioTest {
 	public final void buscarTest() {
 		Anuncio anuncio = new Anuncio();
 
+		String titulo = "PUBLICIDAD";
+
 		List<Contenido> listaReproduccionIdeal = new ArrayList<Contenido>();
 		listaReproduccionIdeal.add(anuncio);
-		assertTrue(anuncio.buscar("PUBLICIDAD").equals(listaReproduccionIdeal));
+		assertTrue(anuncio.buscar(titulo).equals(listaReproduccionIdeal));
 		List<Contenido> listaReproduccionVacia = new ArrayList<Contenido>();
-		assertTrue(anuncio.buscar(cNameGen.next()).equals(
-				listaReproduccionVacia));
 
+		String tituloAleatorio = cNameGen.next();
+		
+		while (titulo.contains(tituloAleatorio)){
+			tituloAleatorio = cNameGen.next();
+		}
+		assertTrue(anuncio.buscar(tituloAleatorio).equals(listaReproduccionVacia));
 	}
 }
