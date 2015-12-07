@@ -4,6 +4,8 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+import org.graphwalker.core.condition.AlternativeCondition;
+import org.graphwalker.core.condition.CombinedCondition;
 import org.graphwalker.core.condition.EdgeCoverage;
 import org.graphwalker.core.condition.ReachedVertex;
 import org.graphwalker.core.condition.TimeDuration;
@@ -182,30 +184,24 @@ public class GraphWalkerTest extends ExecutionContext implements VVS{
 	@Test
     public void runSmokeTest() {
         new TestBuilder()
-            .setModel(MODEL_PATH)
-            .setContext(new GraphWalkerTest())
-            .setPathGenerator(new AStarPath(new ReachedVertex("Server_with_content")))
-            .setStart("power_up_server")
+            .addModel(MODEL_PATH,new AStarPath(new ReachedVertex("Server_with_content")))
             .execute();
     }
 	
 	@Test
     public void runFunctionalTest() {
-        new TestBuilder()
-            .setModel(MODEL_PATH)
-            .setContext(new GraphWalkerTest())
-            .setPathGenerator(new RandomPath(new EdgeCoverage(100)))
-            .setStart("power_up_server")
+		AlternativeCondition condition = new AlternativeCondition();
+		condition.addStopCondition(new EdgeCoverage(100));
+		condition.addStopCondition(new TimeDuration(15, TimeUnit.SECONDS));
+		new TestBuilder()
+            .addModel(MODEL_PATH,new RandomPath(condition))
             .execute();
     }
 	
 	@Test
     public void runStabilityTest() {
         new TestBuilder()
-            .setModel(MODEL_PATH)
-            .setContext(new GraphWalkerTest())
-            .setPathGenerator(new RandomPath(new TimeDuration(30, TimeUnit.SECONDS)))
-            .setStart("power_up_server")
+            .addModel(MODEL_PATH,new RandomPath(new TimeDuration(30, TimeUnit.SECONDS)))
             .execute();
     }
 
