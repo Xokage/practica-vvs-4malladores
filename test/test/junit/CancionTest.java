@@ -77,7 +77,7 @@ public class CancionTest {
 		assertTrue(cancion.buscar(nombre).equals(listaReproduccionIdeal));
 
 		List<Contenido> listaReproduccionVacia = new ArrayList<Contenido>();
-		assertTrue(cancion.buscar(cNameGen.next()).equals(
+		assertTrue(cancion.buscar(nombre + cNameGen.next()).equals(
 				listaReproduccionVacia));
 
 	}

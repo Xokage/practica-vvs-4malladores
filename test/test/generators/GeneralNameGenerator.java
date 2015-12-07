@@ -11,7 +11,7 @@ public class GeneralNameGenerator implements Generator<String> {
 	/** El nombre que se genera. */
 	private final Generator<String> nome = 
 			PrimitiveGenerators.strings("abcdefghijkmnopqrstuvwxyz"
-				+ "ABCDEFGHJKLMNOPQRSTUVWXYZ234567890");
+				+ "ABCDEFGHJKLMNOPQRSTUVWXYZ234567890",1,20);
 
 	/**
 	 * @see net.java.quickcheck.Generator#next()
