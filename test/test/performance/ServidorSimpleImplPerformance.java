@@ -89,25 +89,23 @@ public class ServidorSimpleImplPerformance {
 	 * Eliminar test.
 	 */
 	public final void eliminarPerformanceTest() {
-		List<Pair<Emisora, Cancion>> testElements = new ArrayList<>();
+		List<Pair<Servidor, Cancion>> testElements = new ArrayList<>();
+		final String passwd = sTokenGen.next().getLeft();
 		for (int i = 0; i < itNumber; i++) {
 			String nombre = gNameGen.next();
-			String passwd = sTokenGen.next().getLeft();
 			String token = sTokenGen.next().getLeft();
 			Servidor s = new ServidorSimpleImp(nombre, null, passwd, token);
 			String titulo = gNameGen.next();
 			Integer duracion = cDuracionGen.next();
 			Cancion cancion = new Cancion(titulo, duracion);
 			s.agregar(cancion, passwd);
-			Emisora emisora = new Emisora(nombre);
-			emisora.agregar(cancion, emisora);
-			testElements.add(new Pair<>(emisora, cancion));
+			testElements.add(new Pair<>(s, cancion));
 		}
 
 		EtmPoint point = etmMonitor.createPoint("ServidorSimple:eliminar");
 
-		for (Pair<Emisora, Cancion> pair : testElements) {
-			pair.getLeft().eliminar(pair.getRight());
+		for (Pair<Servidor, Cancion> pair : testElements) {
+			pair.getLeft().eliminar(pair.getRight(),passwd);
 		}
 
 		point.collect();
@@ -252,5 +250,26 @@ public class ServidorSimpleImplPerformance {
 
 		point.collect();
 	}
+	
+	public void bajaPerformanceTest(){
+		List<String> testElements = 
+				new ArrayList<>();
+		String nombre = gNameGen.next();
+		String passwd = gNameGen.next();
+		Servidor servidor = new ServidorSimpleImp(nombre);
+		for (int i = 0; i < itNumber; i++) {
+			
+			testElements.add(servidor.alta());
+		}
 
+		EtmPoint point = etmMonitor
+				.createPoint("ServidorSimple:baja");
+
+		for (String token : testElements) {
+			servidor.baja(token);
+		}
+
+		point.collect();
+	
+	}
 }

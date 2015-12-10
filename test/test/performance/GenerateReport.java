@@ -75,6 +75,7 @@ public class GenerateReport {
 		servidorSimple.buscarTokenInvalidoPerformanceTest();
 		servidorSimple.buscarTokenValidoMasDeDiezPerformanceTest();
 		servidorSimple.buscarTokenValidoPerformanceTest();
+		servidorSimple.bajaPerformanceTest();
 
 		// visualize results
 		monitor.render(new SimpleTextRenderer());
