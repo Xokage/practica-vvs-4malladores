@@ -5,10 +5,11 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import mocks.MockServidorSimpleImp;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import servidor.MockServidorSimpleImp;
 import test.generators.ContenidoDuracionGenerator;
 import test.generators.GeneralNameGenerator;
 import test.generators.ServidorTokenGenerator;

@@ -1,8 +1,9 @@
-package servidor;
+package mocks;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import servidor.ServidorSimpleImp;
 import contenido.Contenido;
 
 public class MockServidorSimpleConRespaldoImp extends MockServidorSimpleImp{

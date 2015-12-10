@@ -5,11 +5,12 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import mocks.MockAnuncio;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import contenido.Contenido;
-import contenido.MockAnuncio;
 import static org.mockito.Mockito.*;
 
 

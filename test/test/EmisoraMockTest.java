@@ -5,6 +5,10 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import mocks.MockAnuncio;
+import mocks.MockCancion;
+import mocks.MockEmisora;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -12,9 +16,6 @@ import contenido.Anuncio;
 import contenido.Cancion;
 import contenido.Contenido;
 import contenido.Emisora;
-import contenido.MockAnuncio;
-import contenido.MockCancion;
-import contenido.MockEmisora;
 import static org.mockito.Mockito.*;
 
 

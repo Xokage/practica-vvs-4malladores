@@ -5,12 +5,13 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import mocks.MockServidorSimpleConRespaldoImp;
+import mocks.MockServidorSimpleImp;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import servidor.BackupServerException;
-import servidor.MockServidorSimpleConRespaldoImp;
-import servidor.MockServidorSimpleImp;
 import servidor.Servidor;
 import servidor.ServidorSimpleConRespaldoImp;
 import servidor.ServidorSimpleImp;

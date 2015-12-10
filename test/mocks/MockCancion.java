@@ -1,30 +1,32 @@
-package contenido;
+package mocks;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Clase MockEmisora.
- */
-public class MockEmisora implements Contenido {
+import contenido.Contenido;
 
+/**
+ * Clase MockCancion.
+ */
+public class MockCancion implements Contenido {
+	
 	/** Título. */
 	private String titulo;
-
+	
 	/** Duración. */
-	private Integer duracion;
-
-	/** Lista de reproducción de contenido. */
+	private int duracion;
+	
+	/** Lista de Reproduccion del Contenido. */
 	private List<Contenido> listaReproduccion;
-
+	
+	
+	
 	/**
 	 * @see contenido.Contenido#obtenerTitulo()
 	 */
 	@Override
 	public String obtenerTitulo() {
-
 		return titulo;
-
 	}
 
 	/**
@@ -32,9 +34,7 @@ public class MockEmisora implements Contenido {
 	 */
 	@Override
 	public Integer obtenerDuracion() {
-
 		return duracion;
-
 	}
 
 	/**
@@ -42,9 +42,7 @@ public class MockEmisora implements Contenido {
 	 */
 	@Override
 	public List<Contenido> obtenerListaReproduccion() {
-
 		return listaReproduccion;
-
 	}
 
 	/**
@@ -52,27 +50,23 @@ public class MockEmisora implements Contenido {
 	 */
 	@Override
 	public List<Contenido> buscar(String subcadena) {
-
-		List<Contenido> lista = new ArrayList<Contenido>();
-
-		return lista;
+			return listaReproduccion;
 	}
 
 	/**
-	 * @see contenido.Contenido#agregar(contenido.Contenido,
-	 *      contenido.Contenido)
+	 * No realiza ninguna función.
 	 */
 	@Override
 	public void agregar(Contenido contenido, Contenido predecesor) {
-
+		
 	}
 
 	/**
-	 * @see contenido.Contenido#eliminar(contenido.Contenido)
+	 * No realiza ninguna función.
 	 */
 	@Override
 	public void eliminar(Contenido contenido) {
-
+		
 	}
 
 }

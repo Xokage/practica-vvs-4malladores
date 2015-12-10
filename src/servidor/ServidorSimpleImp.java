@@ -76,27 +76,6 @@ public class ServidorSimpleImp implements Servidor {
 		}
 	}
 
-	/**
-	 * Instancia un nuevo servidor simple sin contenido.
-	 *
-	 * @param nombreRecibido
-	 *            el nombre del servidor.
-	 * @param tokenContenidoRecibido
-	 *            el token para modificar contenido.
-	 * @param tokenValido
-	 *            token para realizar búsquedas.
-	 */
-	public ServidorSimpleImp(final String nombreRecibido,
-			final String tokenContenidoRecibido, final String tokenValido) {
-		this.nombre = nombreRecibido;
-		this.contenidoList = new ArrayList<>();
-
-		this.tokenMaestro = tokenContenidoRecibido;
-		this.tokensValidos = new ArrayList<>();
-		if (tokenValido!=null){
-			this.tokensValidos.add(new Pair<String, Integer>(tokenValido, triesPerToken));
-		}
-	}
 
 	/**
 	 * Instancia un nuevo servidor simple sin contenido ni tokens definidos.
@@ -147,17 +126,12 @@ public class ServidorSimpleImp implements Servidor {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 
 	public List<Contenido> getContenidoList() {
 		return contenidoList;
 	}
 
-	public void setContenidoList(List<Contenido> contenidoList) {
-		this.contenidoList = contenidoList;
-	}
+
 
 	public String getTokenMaestro() {
 		return tokenMaestro;
@@ -171,13 +145,7 @@ public class ServidorSimpleImp implements Servidor {
 		return tokensValidos;
 	}
 
-	public void setTokensValidos(List<Pair<String, Integer>> tokensValidos) {
-		this.tokensValidos = tokensValidos;
-	}
 
-	public int getTRIES_PER_TOKEN() {
-		return triesPerToken;
-	}
 
 	/**
 	 * @see servidor.Servidor#baja(java.lang.String)

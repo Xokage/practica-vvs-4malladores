@@ -1,23 +1,20 @@
-package contenido;
+package mocks;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Clase MockCancion.
- */
-public class MockCancion implements Contenido {
+import contenido.Contenido;
+
+public class MockAnuncio implements Contenido {
 	
-	/** Título. */
+	/** Título. En un anuncio su título es siempre "PUBLICIDAD"*/
 	private String titulo;
 	
-	/** Duración. */
+	/** Duración. Los anuncios duran siempre 5 segundos. */
 	private int duracion;
 	
-	/** Lista de Reproduccion del Contenido. */
+	/** Lista de Reproduccion de Contenido. */
 	private List<Contenido> listaReproduccion;
-	
-	
 	
 	/**
 	 * @see contenido.Contenido#obtenerTitulo()
@@ -46,14 +43,16 @@ public class MockCancion implements Contenido {
 	/**
 	 * @see contenido.Contenido#buscar(java.lang.String)
 	 */
+
 	@Override
 	public List<Contenido> buscar(String subcadena) {
-			return listaReproduccion;
+		return listaReproduccion;
 	}
 
 	/**
 	 * No realiza ninguna función.
 	 */
+	
 	@Override
 	public void agregar(Contenido contenido, Contenido predecesor) {
 		
@@ -62,6 +61,7 @@ public class MockCancion implements Contenido {
 	/**
 	 * No realiza ninguna función.
 	 */
+	
 	@Override
 	public void eliminar(Contenido contenido) {
 		

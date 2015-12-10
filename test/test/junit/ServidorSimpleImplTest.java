@@ -1,6 +1,6 @@
 package test.junit;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import servidor.ServidorSimpleImp;
 import test.generators.ContenidoDuracionGenerator;
 import test.generators.GeneralNameGenerator;
 import test.generators.ServidorTokenGenerator;
+import util.Pair;
 
 /**
  * Tests para la clase Servidor Simple Impl.
@@ -176,6 +177,40 @@ public class ServidorSimpleImplTest {
 		assertEquals(titulo, result.get(i++).obtenerTitulo());
 		assertEquals(titulo, result.get(i++).obtenerTitulo());
 		assertEquals("PUBLICIDAD", result.get(i).obtenerTitulo());
+	}
+	
+	@Test
+	public final void altaTest() {
+
+		String nombre = gNameGen.next();
+		ServidorSimpleImp s = new ServidorSimpleImp(nombre);
+		String token = s.alta();
+		Pair<String,Integer> par= new Pair<String,Integer>(token,10);
+		assertTrue(!s.getTokensValidos().isEmpty());
+		assertEquals(s.getTokensValidos().get(0).getLeft(),par.getLeft());
+		assertEquals(s.getTokensValidos().get(0).getRight(),par.getRight());
+	}
+	
+	@Test
+	public final void bajaTest() {
+
+		String nombre = gNameGen.next();
+		ServidorSimpleImp s = new ServidorSimpleImp(nombre);
+		nombre = s.getNombre();
+		List<Contenido> contenido = s.getContenidoList();
+		s.setTokenMaestro("ola");
+		String tokenMaestro=s.getTokenMaestro();
+		String token = s.alta();
+		Pair<String,Integer> par= new Pair<String,Integer>(token,10);
+		assertTrue(!s.getTokensValidos().isEmpty());
+		assertEquals(s.getTokensValidos().get(0).getLeft(),par.getLeft());
+		assertEquals(s.getTokensValidos().get(0).getRight(),par.getRight());
+		String token1 = s.alta();
+		assertTrue(s.getTokensValidos().size()==2);
+		s.baja(token1);
+		assertTrue(s.getTokensValidos().size()==1);
+		s.baja(token);
+		assertTrue(s.getTokensValidos().isEmpty());
 	}
 
 }
