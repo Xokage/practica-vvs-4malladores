@@ -46,16 +46,19 @@ public class GenerateReport {
 		anuncio.obtenerDuracionPerformanceTest();
 		anuncio.obtenerListaReproduccionPerformanceTest();
 		anuncio.buscarPerformanceTest();
+		anuncio.buscarPerformanceTest2();
 
 		cancion.obtenerTituloPerformanceTest();
 		cancion.obtenerDuracionPerformanceTest();
 		cancion.obtenerListaReproduccionPerformanceTest();
 		cancion.buscarPerformanceTest();
-
+		cancion.buscarPerformanceTest2();
+		
 		emisora.obtenerTituloPerformanceTest();
 		emisora.obtenerDuracionPerformanceTest();
 		emisora.obtenerListaReproduccionPerformanceTest();
 		emisora.buscarPerformanceTest();
+		emisora.buscarPerformanceTest2();
 		emisora.agregarPerformanceTest();
 		emisora.eliminarPerformanceTest();
 
@@ -65,7 +68,8 @@ public class GenerateReport {
 		} catch (BackupServerException e) {
 			e.printStackTrace();
 		}
-
+		
+		servidorSimple.obtenerNombrePerformanceTest();
 		servidorSimple.agregarPerformanceTest();
 		servidorSimple.eliminarPerformanceTest();
 		servidorSimple.buscarTokenInvalidoPerformanceTest();

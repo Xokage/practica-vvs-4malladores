@@ -34,7 +34,6 @@ public class CancionPerformance {
 	/**
 	 * Obtener titulo test.
 	 */
-	@Test
 	public final void obtenerTituloPerformanceTest() {
 		List<Cancion> testElements = new ArrayList<>();
 		for (int i = 0; i < itNumber; i++) {
@@ -58,7 +57,6 @@ public class CancionPerformance {
 	/**
 	 * Obtener duracion test.
 	 */
-	@Test
 	public final void obtenerDuracionPerformanceTest() {
 		List<Cancion> testElements = new ArrayList<>();
 		for (int i = 0; i < itNumber; i++) {
@@ -82,7 +80,6 @@ public class CancionPerformance {
 	/**
 	 * Obtener lista reproduccion test.
 	 */
-	@Test
 	public final void obtenerListaReproduccionPerformanceTest() {
 		List<Cancion> testElements = new ArrayList<>();
 		for (int i = 0; i < itNumber; i++) {
@@ -106,7 +103,6 @@ public class CancionPerformance {
 	/**
 	 * Buscar test.
 	 */
-	@Test
 	public final void buscarPerformanceTest() {
 		List<Pair<Cancion, String>> testElements = new ArrayList<>();
 		for (int i = 0; i < itNumber; i++) {
@@ -121,6 +117,30 @@ public class CancionPerformance {
 
 		for (Pair<Cancion, String> pair : testElements) {
 			pair.getLeft().buscar(pair.getRight());
+		}
+
+		point.collect();
+	}
+	
+	public final void buscarPerformanceTest2() {
+		List<Pair<Cancion, String>> testElements = new ArrayList<>();
+		for (int i = 0; i < itNumber; i++) {
+			String nombre = cNameGen.next();
+			Integer duracion = cDuracionGen.next();
+			Cancion cancion = new Cancion(nombre, duracion);
+
+			testElements.add(new Pair<>(cancion, nombre));
+		}
+
+		EtmPoint point = etmMonitor.createPoint("CancionPerformance:buscar");
+		
+		String tituloAleatorio = cNameGen.next();
+		
+		for (Pair<Cancion, String> pair : testElements) {
+			while (pair.getRight().contains(tituloAleatorio)) {
+				tituloAleatorio = cNameGen.next();
+			}
+			pair.getLeft().buscar(tituloAleatorio);
 		}
 
 		point.collect();

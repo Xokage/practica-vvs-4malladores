@@ -63,7 +63,6 @@ public class ServidorSimpleImplPerformance {
 	/**
 	 * Agregar test.
 	 */
-	@Test
 	public final void agregarPerformanceTest() {
 		List<Pair<Emisora, Cancion>> testElements = new ArrayList<>();
 		for (int i = 0; i < itNumber; i++) {
@@ -89,7 +88,6 @@ public class ServidorSimpleImplPerformance {
 	/**
 	 * Eliminar test.
 	 */
-	@Test
 	public final void eliminarPerformanceTest() {
 		List<Pair<Emisora, Cancion>> testElements = new ArrayList<>();
 		for (int i = 0; i < itNumber; i++) {
@@ -118,7 +116,6 @@ public class ServidorSimpleImplPerformance {
 	/**
 	 * Buscar token invalido test.
 	 */
-	@Test
 	public final void buscarTokenInvalidoPerformanceTest() {
 		List<Pair<Servidor, Pair<String, String>>> testElements = 
 				new ArrayList<>();
@@ -165,7 +162,6 @@ public class ServidorSimpleImplPerformance {
 	/**
 	 * Buscar con token válido test.
 	 */
-	@Test
 	public final void buscarTokenValidoPerformanceTest() {
 		List<Pair<Servidor, Pair<String, String>>> testElements = 
 				new ArrayList<>();
@@ -212,7 +208,6 @@ public class ServidorSimpleImplPerformance {
 	/**
 	 * Buscar con token valido más de diez elementos test.
 	 */
-	@Test
 	public final void buscarTokenValidoMasDeDiezPerformanceTest() {
 		final int nIt = 15;
 		List<Pair<Servidor, Pair<String, String>>> testElements = 

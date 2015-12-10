@@ -6,6 +6,7 @@ import java.util.List;
 import test.generators.ContenidoDuracionGenerator;
 import test.generators.GeneralNameGenerator;
 import util.Pair;
+import contenido.Anuncio;
 import contenido.Cancion;
 import contenido.Contenido;
 import contenido.Emisora;
@@ -132,7 +133,31 @@ public class EmisoraPerformance {
 		point.collect();
 
 	}
+	
+	public final void buscarPerformanceTest2() {
+		List<Pair<Emisora, String>> testElements = new ArrayList<>();
+		for (int i = 0; i < itNumber; i++) {
+			String nombreEmisora = cNameGen.next();
+			Emisora emisora = new Emisora(nombreEmisora);
+			
+			Anuncio anuncio = new Anuncio();
+			emisora.agregar(anuncio, null);
+			
+			List<Contenido> listaReproduccionIdeal = new ArrayList<Contenido>();
+			listaReproduccionIdeal.add(emisora);
 
+			testElements.add(new Pair<>(emisora, nombreEmisora));
+		}
+
+		EtmPoint point = etmMonitor.createPoint("EmisoraPerformance:buscar");
+
+		for (Pair<Emisora, String> pair : testElements) {
+			pair.getLeft().buscar(pair.getRight());
+		}
+
+		point.collect();
+
+	}
 	/**
 	 * Agregar test.
 	 */

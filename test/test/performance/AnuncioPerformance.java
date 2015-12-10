@@ -101,4 +101,25 @@ public class AnuncioPerformance {
 
 		point.collect();
 	}
+	
+	public final void buscarPerformanceTest2() {
+		List<Anuncio> testElements = new ArrayList<>();
+		for (int i = 0; i < itNumber; i++) {
+			Anuncio anuncio = new Anuncio();
+			testElements.add(anuncio);
+		}
+
+		EtmPoint point = etmMonitor.createPoint("AnuncioPerformance:buscar");
+		
+		String tituloAleatorio = cNameGen.next();
+		String titulo = "PUBLICIDAD";
+		while(titulo.contains(tituloAleatorio)) {
+			tituloAleatorio = cNameGen.next();
+		}
+		for (Anuncio a : testElements) {
+			a.buscar(tituloAleatorio);
+		}
+
+		point.collect();
+	}
 }
