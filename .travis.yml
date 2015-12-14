@@ -1,5 +1,5 @@
 language: java
-script: mvn --quiet test
+script: mvn --quiet -Dlog4j.debug=false test
 notifications:
   email: false
 jdk:
