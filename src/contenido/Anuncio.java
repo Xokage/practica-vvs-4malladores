@@ -36,15 +36,17 @@ public class Anuncio implements Contenido {
 	 * @see contenido.Contenido#obtenerTitulo()
 	 */
 	@Override
-	public final String obtenerTitulo() {
+	public String obtenerTitulo() {
 		return titulo;
 	}
+
+
 
 	/**
 	 * @see contenido.Contenido#obtenerDuracion()
 	 */
 	@Override
-	public final Integer obtenerDuracion() {
+	public Integer obtenerDuracion() {
 		return duracion;
 	}
 
@@ -52,7 +54,7 @@ public class Anuncio implements Contenido {
 	 * @see contenido.Contenido#obtenerListaReproduccion()
 	 */
 	@Override
-	public final List<Contenido> obtenerListaReproduccion() {
+	public List<Contenido> obtenerListaReproduccion() {
 		return listaReproduccion;
 	}
 
@@ -60,7 +62,7 @@ public class Anuncio implements Contenido {
 	 * @see contenido.Contenido#buscar(java.lang.String)
 	 */
 	@Override
-	public final List<Contenido> buscar(final String subcadena) {
+	public List<Contenido> buscar(final String subcadena) {
 		if (titulo.contains(subcadena)) {
 			return listaReproduccion;
 		} else {

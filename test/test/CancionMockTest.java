@@ -5,13 +5,14 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import mocks.MockCancion;
 
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import contenido.Contenido;
 import static org.mockito.Mockito.*;
+
+import contenido.Cancion;
 
 
 /**
@@ -20,7 +21,7 @@ import static org.mockito.Mockito.*;
 public class CancionMockTest {
 	
 	/** Creamos un mock de cancion para probar. */
-	MockCancion cancionMock = Mockito.mock(MockCancion.class);
+	Cancion cancionMock = mock(Cancion.class);
 
 	/**
 	 * Obtener titulo test.
