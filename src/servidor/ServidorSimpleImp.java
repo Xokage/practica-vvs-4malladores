@@ -191,6 +191,7 @@ public class ServidorSimpleImp implements Servidor {
 	@Override
 	public List<Contenido> buscar(final String subcadena,
 			final String token) {
+		boolean anuncio = false;
 		List<Contenido> resultado = new ArrayList<>();
 		Pair<String, Integer> user = null;
 
@@ -205,23 +206,35 @@ public class ServidorSimpleImp implements Servidor {
 		// Quitamos o usuario da lista de tokens validos
 		// mentres esta pedindo contido.
 		int contidosVisualizados = 0;
+		int tamano = this.contenidoList.size();
+		int elementos = 0;
 		for (Contenido elemento : this.contenidoList) {
-			if (elemento.obtenerTitulo().contains(subcadena)) {
+			if (elemento.obtenerTitulo().contains(subcadena)||
+					elemento.obtenerTitulo().compareTo(subcadena)==0) {
 
 				if (user == null) {
-					if (contidosVisualizados == 0) {
-						resultado.add(new Anuncio()); // Comeza cun anuncio
+					if(!anuncio){
+						resultado.add(new Anuncio());//Comeza cun anuncio
+						anuncio=true;
 					}
-					contidosVisualizados++;
+					
 					resultado.add(elemento); // Añadimos elemento que contén a
 												// subcadena
-					if (contidosVisualizados % anuncioTrasXContenidos == 0) {
+					contidosVisualizados++;
+					elementos++;
+					if (contidosVisualizados % anuncioTrasXContenidos == 0 && elementos!=tamano) {
 						resultado.add(new Anuncio()); // Un anuncio cada 3
 					} // contidos
 				} else if (user.getRight() <= 0) {
+					resultado.add(new Anuncio());//Comeza cun anuncio
+					anuncio=true;
+					resultado.add(elemento);
+					contidosVisualizados++;
+					elementos++;
 					user = null;
 				} else {
 					resultado.add(elemento); // Añadimos elemento
+					elementos++;
 					user = new Pair<String, Integer>(user.getLeft(),
 							user.getRight() - 1); // Usuario gasta un intento
 				}

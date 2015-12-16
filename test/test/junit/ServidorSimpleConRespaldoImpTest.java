@@ -1,11 +1,13 @@
 package test.junit;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import servidor.BackupServerException;
 import servidor.Servidor;
@@ -117,11 +119,21 @@ public class ServidorSimpleConRespaldoImpTest {
 
 		Servidor servidorRespaldo = new ServidorSimpleImp("ServidorSimple",
 				null, passwd, tokenValido);
-		ServidorSimpleConRespaldoImp s1 = new ServidorSimpleConRespaldoImp(
+		
+		String titulo = gNameGen.next();
+		Integer duracion = cDuracionGen.next();
+		
+		Contenido mockCancion = Mockito.mock(Contenido.class);
+		when(mockCancion.obtenerTitulo()).thenReturn(titulo);
+		when(mockCancion.obtenerDuracion()).thenReturn(duracion);
+		
+		servidorRespaldo.agregar(mockCancion, passwd); //Añadimos un contenido al servidor de respaldo
+		
+		ServidorSimpleConRespaldoImp servidorSimpleConRespaldoImp = new ServidorSimpleConRespaldoImp(
 				nombre, null, passwd, tokenValido, servidorRespaldo);
 
-		List<Contenido> result = s1.buscar(gNameGen.next(), tokenValido);
 		List<Contenido> result1 = new ArrayList<Contenido>();
-		assertEquals(result, result1);
+		result1.add(mockCancion);
+		assertEquals(servidorSimpleConRespaldoImp.buscar(titulo, tokenValido), result1);
 	}
 }

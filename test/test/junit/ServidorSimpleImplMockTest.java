@@ -1,15 +1,17 @@
 package test.junit;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import mocks.MockServidorSimpleImp;
+
 
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import servidor.Servidor;
+import servidor.ServidorSimpleImp;
 import test.generators.ContenidoDuracionGenerator;
 import test.generators.GeneralNameGenerator;
 import test.generators.ServidorTokenGenerator;
@@ -20,9 +22,6 @@ import static org.mockito.Mockito.*;
 
 
 public class ServidorSimpleImplMockTest {
-	
-	/** Creamos un mock de servidorSimpleImp para probar. */
-	MockServidorSimpleImp servidorSimpleImpMock = Mockito.mock(MockServidorSimpleImp.class);
 
 	/** Generador de nombres válidos. */
 	private final GeneralNameGenerator gNameGen = new GeneralNameGenerator();
@@ -41,8 +40,13 @@ public class ServidorSimpleImplMockTest {
 	@Test
 	public final void obtenerNombreConServidorSimpleImplMockTest() {
 		String nombre = gNameGen.next();
-		when(servidorSimpleImpMock.obtenerNombre()).thenReturn(nombre);
-		assertEquals(servidorSimpleImpMock.obtenerNombre(), nombre);
+		String passwd = gNameGen.next();
+		String tokenValido = sTokenGen.next().getLeft();
+		
+		Servidor servidorSimpleImp = new ServidorSimpleImp(nombre,
+				null, passwd, tokenValido);
+		
+		assertEquals(servidorSimpleImp.obtenerNombre(), nombre);
 	}
 
 	/**
@@ -50,18 +54,24 @@ public class ServidorSimpleImplMockTest {
 	 */
 	@Test
 	public final void agregarConServidorSimpleImplMockTest() {
-		String passwd = sTokenGen.next().getLeft();
-		String token = sTokenGen.next().getLeft();
+		String nombre = gNameGen.next();
+		String passwd = gNameGen.next();
+		String tokenValido = sTokenGen.next().getLeft();
+		
+		Servidor servidorSimpleImp = new ServidorSimpleImp(nombre,
+				null, passwd, tokenValido);
 
 		String titulo = gNameGen.next();
 		Integer duracion = cDuracionGen.next();
-		Contenido cancion = new Cancion(titulo, duracion);
+		
+		Contenido cancionMock = mock(Cancion.class);
+		when(cancionMock.obtenerTitulo()).thenReturn(titulo);
+		when(cancionMock.obtenerDuracion()).thenReturn(duracion);
 
-		servidorSimpleImpMock.agregar(cancion, passwd);
+		servidorSimpleImp.agregar(cancionMock, passwd);
 		List<Contenido> result = new ArrayList<>();
-		result.add(cancion);
-		when(servidorSimpleImpMock.buscar(titulo, token)).thenReturn(result);
-		assertEquals(servidorSimpleImpMock.buscar(titulo, token).get(0), cancion);
+		result.add(cancionMock);
+		assertEquals(servidorSimpleImp.buscar(titulo, tokenValido),result);
 	}
 
 	/**
@@ -69,26 +79,30 @@ public class ServidorSimpleImplMockTest {
 	 */
 	@Test
 	public final void eliminarConServidorSimpleImplMockTest() {
-		String passwd = sTokenGen.next().getLeft();
-		String token = sTokenGen.next().getLeft();
+		String nombre = gNameGen.next();
+		String passwd = gNameGen.next();
+		String tokenValido = sTokenGen.next().getLeft();
+		
+		Servidor servidorSimpleImp = new ServidorSimpleImp(nombre,
+				null, passwd, tokenValido);
 
 		String titulo = gNameGen.next();
 		Integer duracion = cDuracionGen.next();
 
-		Contenido cancion = new Cancion(titulo, duracion);
+		Contenido cancionMock = mock(Cancion.class);
+		when(cancionMock.obtenerTitulo()).thenReturn(titulo);
+		when(cancionMock.obtenerDuracion()).thenReturn(duracion);
 
-		servidorSimpleImpMock.agregar(cancion, passwd);
+		servidorSimpleImp.agregar(cancionMock, passwd);
 		
 		List<Contenido> resultAntes = new ArrayList<>();
-		resultAntes.add(cancion);
-		when(servidorSimpleImpMock.buscar(titulo, token)).thenReturn(resultAntes);
+		resultAntes.add(cancionMock);
+		assertEquals(servidorSimpleImp.buscar(titulo, tokenValido), resultAntes);
 
-		servidorSimpleImpMock.eliminar(cancion, passwd);
+		servidorSimpleImp.eliminar(cancionMock, passwd);
 		List<Contenido> resultDespois = new ArrayList<>();
-		when(servidorSimpleImpMock.buscar(titulo, token)).thenReturn(resultDespois);
 
-		assertEquals(resultAntes.get(0), cancion);
-		assertEquals(resultDespois.size(), 0);
+		assertEquals(servidorSimpleImp.buscar(titulo, tokenValido), resultDespois);
 	}
 
 	/**
@@ -96,30 +110,43 @@ public class ServidorSimpleImplMockTest {
 	 */
 	@Test
 	public final void buscarTokenInvalidoConServidorSimpleImplMockTest() {
-		String passwd = sTokenGen.next().getLeft();
+		String nombre = gNameGen.next();
+		String passwd = gNameGen.next();
+		String tokenValido = sTokenGen.next().getLeft();
+		
+		Servidor servidorSimpleImp = new ServidorSimpleImp(nombre,
+				null, passwd, tokenValido);
 
 		String titulo = gNameGen.next();
 		Integer duracion = cDuracionGen.next();
 
-		Contenido cancion = new Cancion(titulo, duracion);
-		Contenido anuncio = new Anuncio();
+		Contenido cancionMock = mock(Cancion.class);
+		when(cancionMock.obtenerTitulo()).thenReturn(titulo);
+		when(cancionMock.obtenerDuracion()).thenReturn(duracion);
 		
-		servidorSimpleImpMock.agregar(cancion, passwd);
-		servidorSimpleImpMock.agregar(cancion, passwd);
-		servidorSimpleImpMock.agregar(cancion, passwd);
-		servidorSimpleImpMock.agregar(cancion, passwd);
-		servidorSimpleImpMock.agregar(cancion, passwd);
+		Contenido anuncioMock = mock(Anuncio.class);
+		when(anuncioMock.obtenerTitulo()).thenReturn("PUBLICIDAD");
+		
+		servidorSimpleImp.agregar(cancionMock, passwd);
+		servidorSimpleImp.agregar(cancionMock, passwd);
+		servidorSimpleImp.agregar(cancionMock, passwd);
+		servidorSimpleImp.agregar(cancionMock, passwd);
+		servidorSimpleImp.agregar(cancionMock, passwd);
 
-		List<Contenido> result = new ArrayList<>();
-		result.add(anuncio);
-		result.add(cancion);
-		result.add(cancion);
-		result.add(cancion);
-		result.add(anuncio);
 		String token = sTokenGen.next().getLeft();
-		when(servidorSimpleImpMock.buscar(titulo, token)).thenReturn(result);
 		
-		assertEquals(servidorSimpleImpMock.buscar(titulo, token),result);
+		List<Contenido> result = new ArrayList<>();
+		result = servidorSimpleImp.buscar(titulo, token);
+		int i = 0;
+		assertEquals(result.get(i).obtenerTitulo(),anuncioMock.obtenerTitulo());
+		assertEquals(result.get(++i),cancionMock);
+		assertEquals(result.get(++i),cancionMock);
+		assertEquals(result.get(++i),cancionMock);
+		assertEquals(result.get(++i).obtenerTitulo(),anuncioMock.obtenerTitulo());
+		assertEquals(result.get(++i),cancionMock);
+		assertEquals(result.get(++i),cancionMock);
+		
+		
 	}
 
 	/**
@@ -127,24 +154,31 @@ public class ServidorSimpleImplMockTest {
 	 */
 	@Test
 	public final void buscarTokenValidoConServidorSimpleImplMockTest() {
-		String passwd = sTokenGen.next().getLeft();
-		String token = sTokenGen.next().getLeft();
+		String nombre = gNameGen.next();
+		String passwd = gNameGen.next();
+		String tokenValido = sTokenGen.next().getLeft();
+		
+		Servidor servidorSimpleImp = new ServidorSimpleImp(nombre,
+				null, passwd, tokenValido);
 
 		String titulo = gNameGen.next();
 		Integer duracion = cDuracionGen.next();
 
-		Contenido cancion = new Cancion(titulo, duracion);
+		Contenido cancionMock = mock(Cancion.class);
+		when(cancionMock.obtenerTitulo()).thenReturn(titulo);
+		when(cancionMock.obtenerDuracion()).thenReturn(duracion);
 
-		servidorSimpleImpMock.agregar(cancion, passwd);
-		servidorSimpleImpMock.agregar(cancion, passwd);
-		servidorSimpleImpMock.agregar(cancion, passwd);
-		servidorSimpleImpMock.agregar(cancion, passwd);
+		servidorSimpleImp.agregar(cancionMock, passwd);
+		servidorSimpleImp.agregar(cancionMock, passwd);
+		servidorSimpleImp.agregar(cancionMock, passwd);
+		servidorSimpleImp.agregar(cancionMock, passwd);
 		List<Contenido> result = new ArrayList<>();
-		result.add(cancion);
-		result.add(cancion);
-		result.add(cancion);
-		when(servidorSimpleImpMock.buscar(titulo, token)).thenReturn(result);
-		assertEquals(servidorSimpleImpMock.buscar(titulo, token), result);
+		result.add(cancionMock);
+		result.add(cancionMock);
+		result.add(cancionMock);
+		result.add(cancionMock);
+		
+		assertEquals(servidorSimpleImp.buscar(titulo, tokenValido), result);
 	}
 
 	/**
@@ -156,35 +190,42 @@ public class ServidorSimpleImplMockTest {
 		final int nItAgr = 15;
 		final int nItBus = 10;
 
-		String passwd = sTokenGen.next().getLeft();
-		String token = sTokenGen.next().getLeft();
+		String nombre = gNameGen.next();
+		String passwd = gNameGen.next();
+		String tokenValido = sTokenGen.next().getLeft();
+		
+		Servidor servidorSimpleImp = new ServidorSimpleImp(nombre,
+				null, passwd, tokenValido);
 
 		String titulo = gNameGen.next();
 		Integer duracion = cDuracionGen.next();
 
-		Contenido cancion = new Cancion(titulo, duracion);
-		Contenido anuncio = new Anuncio();
+		Contenido cancionMock = mock(Cancion.class);
+		when(cancionMock.obtenerTitulo()).thenReturn(titulo);
+		when(cancionMock.obtenerDuracion()).thenReturn(duracion);
+		
+		Contenido anuncioMock = mock(Anuncio.class);
+		when(anuncioMock.obtenerTitulo()).thenReturn("PUBLICIDAD");
 
 		for (int j = 0; j <= nItAgr; j++) {
-			servidorSimpleImpMock.agregar(cancion, passwd);
+			servidorSimpleImp.agregar(cancionMock, passwd);
 		}
 		List<Contenido> result = new ArrayList<>();
+		result = servidorSimpleImp.buscar(titulo, tokenValido);
 		int i;
 		for (i = 0; i < nItBus; i++) {
-			result.add(cancion);
+			assertEquals(cancionMock,result.get(i));
 		}
-		when(servidorSimpleImpMock.buscar(titulo, token)).thenReturn(result);
-		assertEquals(servidorSimpleImpMock.buscar(titulo, token),result);
-		result.clear();
-		result.add(anuncio);
-		result.add(cancion);
-		result.add(cancion);
-		result.add(cancion);
-		result.add(anuncio);
 		
-		when(servidorSimpleImpMock.buscar(titulo, token)).thenReturn(result);
+		assertTrue(anuncioMock.obtenerTitulo().compareTo(result.get(i).obtenerTitulo())==0);
+		assertEquals(cancionMock,result.get(++i));
+		assertEquals(cancionMock,result.get(++i));
+		assertEquals(cancionMock,result.get(++i));
+		assertTrue(anuncioMock.obtenerTitulo().compareTo(result.get(++i).obtenerTitulo())==0);
+		assertEquals(cancionMock,result.get(++i));
+		assertEquals(cancionMock,result.get(++i));
+		assertEquals(cancionMock,result.get(++i));
 
-		assertEquals(servidorSimpleImpMock.buscar(titulo, token),result);
 	}
 	
 }

@@ -33,7 +33,7 @@ public class Emisora implements Contenido {
 	 * @see contenido.Contenido#obtenerTitulo()
 	 */
 	@Override
-	public final String obtenerTitulo() {
+	public String obtenerTitulo() {
 
 		return titulo;
 
@@ -43,7 +43,7 @@ public class Emisora implements Contenido {
 	 * @see contenido.Contenido#obtenerDuracion()
 	 */
 	@Override
-	public final Integer obtenerDuracion() {
+	public Integer obtenerDuracion() {
 
 		return duracion;
 
@@ -53,7 +53,7 @@ public class Emisora implements Contenido {
 	 * @see contenido.Contenido#obtenerListaReproduccion()
 	 */
 	@Override
-	public final List<Contenido> obtenerListaReproduccion() {
+	public List<Contenido> obtenerListaReproduccion() {
 
 		return listaReproduccion;
 
@@ -63,7 +63,7 @@ public class Emisora implements Contenido {
 	 * @see contenido.Contenido#buscar(java.lang.String)
 	 */
 	@Override
-	public final List<Contenido> buscar(final String subcadena) {
+	public List<Contenido> buscar(final String subcadena) {
 
 		List<Contenido> lista = new ArrayList<Contenido>();
 
@@ -84,7 +84,7 @@ public class Emisora implements Contenido {
 	 *      contenido.Contenido)
 	 */
 	@Override
-	public final void agregar(final Contenido contenido,
+	public void agregar(final Contenido contenido,
 			final Contenido predecesor) {
 
 		Integer indice = listaReproduccion.indexOf(predecesor);
@@ -97,7 +97,7 @@ public class Emisora implements Contenido {
 	 * @see contenido.Contenido#eliminar(contenido.Contenido)
 	 */
 	@Override
-	public final void eliminar(final Contenido contenido) {
+	public void eliminar(final Contenido contenido) {
 
 		listaReproduccion.remove(contenido);
 		this.duracion -= contenido.obtenerDuracion();

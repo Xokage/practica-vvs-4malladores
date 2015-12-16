@@ -117,6 +117,8 @@ public class ServidorSimpleImplTest {
 		assertEquals(result.get(i++).obtenerTitulo(), titulo);
 		assertEquals(result.get(i++).obtenerTitulo(), titulo);
 		assertEquals(result.get(i++).obtenerTitulo(), "PUBLICIDAD");
+		assertEquals(result.get(i++).obtenerTitulo(), titulo);
+		assertEquals(result.get(i++).obtenerTitulo(), titulo);
 	}
 
 	/**
@@ -156,8 +158,8 @@ public class ServidorSimpleImplTest {
 
 		String nombre = gNameGen.next();
 		String passwd = sTokenGen.next().getLeft();
-		String token = sTokenGen.next().getLeft();
-		Servidor s = new ServidorSimpleImp(nombre, null, passwd, token);
+		String tokenValido = sTokenGen.next().getLeft();
+		Servidor s = new ServidorSimpleImp(nombre, null, passwd, tokenValido);
 
 		String titulo = gNameGen.next();
 		Integer duracion = cDuracionGen.next();
@@ -167,16 +169,18 @@ public class ServidorSimpleImplTest {
 		for (int j = 0; j <= nItAgr; j++) {
 			s.agregar(cancion, passwd);
 		}
-		List<Contenido> result = s.buscar(titulo, token);
+		List<Contenido> result = s.buscar(titulo, tokenValido);
 		int i;
 		for (i = 0; i < nItBus; i++) {
-			assertEquals(titulo, result.get(i).obtenerTitulo());
+			assertEquals(titulo,result.get(i).obtenerTitulo());
 		}
-		assertEquals("PUBLICIDAD", result.get(i++).obtenerTitulo());
-		assertEquals(titulo, result.get(i++).obtenerTitulo());
-		assertEquals(titulo, result.get(i++).obtenerTitulo());
-		assertEquals(titulo, result.get(i++).obtenerTitulo());
-		assertEquals("PUBLICIDAD", result.get(i).obtenerTitulo());
+		assertEquals("PUBLICIDAD",result.get(i).obtenerTitulo());
+		assertEquals(titulo,result.get(++i).obtenerTitulo());
+		assertEquals(titulo,result.get(++i).obtenerTitulo());
+		assertEquals(titulo,result.get(++i).obtenerTitulo());
+		assertEquals("PUBLICIDAD",result.get(++i).obtenerTitulo());
+		assertEquals(titulo,result.get(++i).obtenerTitulo());
+		assertEquals(titulo,result.get(++i).obtenerTitulo());
 	}
 	
 	@Test

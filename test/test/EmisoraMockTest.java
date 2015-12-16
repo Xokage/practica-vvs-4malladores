@@ -5,9 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
-import mocks.MockAnuncio;
-import mocks.MockCancion;
-import mocks.MockEmisora;
+import contenido.Emisora;
 
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -25,7 +23,7 @@ import static org.mockito.Mockito.*;
 public class EmisoraMockTest {
 	
 	/** El mock de emisora. */
-	MockEmisora emisoraMock = Mockito.mock(MockEmisora.class);
+	Emisora emisoraMock = mock(Emisora.class);
 
 
 	/**
@@ -52,7 +50,7 @@ public class EmisoraMockTest {
 	@Test
 	public void obtenerListaReproduccionConEmisoraMockTest() {
 		List<Contenido> listaReproduccionIdeal = new ArrayList<Contenido>();
-		MockCancion cancionMock = new MockCancion();
+		Cancion cancionMock = Mockito.mock(Cancion.class);
 		listaReproduccionIdeal.add(cancionMock);
 		when(emisoraMock.obtenerListaReproduccion()).thenReturn(listaReproduccionIdeal);
 		assertTrue(emisoraMock.obtenerListaReproduccion().equals(listaReproduccionIdeal));
@@ -64,7 +62,7 @@ public class EmisoraMockTest {
 	@Test
 	public void buscarConEmisoraMockTest() {
 		List<Contenido> listaReproduccionIdeal = new ArrayList<Contenido>();
-		MockCancion cancionMock = new MockCancion();
+		Cancion cancionMock = Mockito.mock(Cancion.class);
 		listaReproduccionIdeal.add(cancionMock);
 		when(emisoraMock.buscar("Hello")).thenReturn(listaReproduccionIdeal);
 		assertTrue(emisoraMock.buscar("Hello").equals(listaReproduccionIdeal));
@@ -77,8 +75,8 @@ public class EmisoraMockTest {
 	 */
 	@Test
 	public void agregarConEmisoraMockTest() {
-		MockCancion cancionMock = new MockCancion ();
-		MockAnuncio anuncioMock = new MockAnuncio();
+		Cancion cancionMock = Mockito.mock(Cancion.class);
+		Anuncio anuncioMock = Mockito.mock(Anuncio.class);
 		emisoraMock.agregar(cancionMock, null);
 		List<Contenido> listaReproduccionIdeal = new ArrayList<Contenido>();
 		listaReproduccionIdeal.add(cancionMock);
@@ -94,7 +92,7 @@ public class EmisoraMockTest {
 	 */
 	@Test
 	public void eliminarConEmisoraMockTest() {
-		MockCancion cancionMock = new MockCancion ();
+		Cancion cancionMock = Mockito.mock(Cancion.class);
 		emisoraMock.agregar(cancionMock, null);
 		List<Contenido> listaReproduccionIdeal = new ArrayList<Contenido>();
 		listaReproduccionIdeal.add(cancionMock);

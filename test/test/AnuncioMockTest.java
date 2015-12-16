@@ -5,13 +5,13 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import mocks.MockAnuncio;
 
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import contenido.Contenido;
 import static org.mockito.Mockito.*;
+import contenido.*;
 
 
 /**
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 public class AnuncioMockTest {
 	
 	/** Creamos un mock de anuncio para probar. */
-	MockAnuncio anuncioMock = Mockito.mock(MockAnuncio.class);
+	Anuncio anuncioMock = mock(Anuncio.class);
 
 	/**
 	 * Obtener titulo test.
